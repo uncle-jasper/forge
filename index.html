@@ -1174,9 +1174,10 @@ const _origRenderHistory = renderHistory;
 async function renderHistoryWithSync() {
   if (getGithubToken() && getGistId()) {
     const synced = await syncFromGist();
+    // push back after pull so streak and any local-only data is always current on gist
+    await syncToGist();
     _origRenderHistory();
     initGithubTokenUI();
-    // restore synced status after initGithubTokenUI overwrites it
     if (synced) {
       const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
       setSyncStatus('synced', `synced at ${now}`);
