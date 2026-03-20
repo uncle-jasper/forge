@@ -1047,10 +1047,28 @@ document.getElementById('github-token-save').addEventListener('click', async () 
   if (!res.ok) { alert('Invalid GitHub token — check and try again.'); return; }
   localStorage.setItem('forge_github_token', val);
   document.getElementById('github-token-input').value = '';
+  // search for existing forge gist before creating a new one
+  try {
+    const gistsRes = await fetch('https://api.github.com/gists', { headers: { 'Authorization': `token ${val}` } });
+    if (gistsRes.ok) {
+      const gists = await gistsRes.json();
+      const existing = gists.find(g => g.files && g.files['forge-history.json']);
+      if (existing) {
+        localStorage.setItem('forge_gist_id', existing.id);
+      }
+    }
+  } catch(e) {}
   initGithubTokenUI();
-  // immediately push current data
-  await syncToGist();
+  // pull from gist if found, otherwise push
+  if (getGistId()) {
+    await syncFromGist();
+  } else {
+    await syncToGist();
+  }
   renderHistory();
+  initGithubTokenUI();
+  const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+  setSyncStatus('synced', `synced at ${now}`);
 });
 
 document.getElementById('github-token-clear').addEventListener('click', () => {
@@ -1141,10 +1159,18 @@ async function syncFromGist() {
 const _origRenderHistory = renderHistory;
 async function renderHistoryWithSync() {
   if (getGithubToken() && getGistId()) {
-    await syncFromGist();
+    const synced = await syncFromGist();
+    _origRenderHistory();
+    initGithubTokenUI();
+    // restore synced status after initGithubTokenUI overwrites it
+    if (synced) {
+      const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+      setSyncStatus('synced', `synced at ${now}`);
+    }
+  } else {
+    _origRenderHistory();
+    initGithubTokenUI();
   }
-  _origRenderHistory();
-  initGithubTokenUI();
 }
 
 
