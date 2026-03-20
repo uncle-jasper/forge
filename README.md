@@ -30,6 +30,37 @@ The Forge uses the [Anthropic API](https://www.anthropic.com) to power its analy
 
 ---
 
+
+## Cross-device sync (GitHub Gist)
+
+The Forge can sync your history automatically across all your devices using a private GitHub Gist. No extra accounts or services needed.
+
+### Setup (do this once per device)
+
+**Step 1 — Create a GitHub Personal Access Token**
+1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
+2. Click **Generate new token (classic)**
+3. Give it a name like `forge-sync`
+4. Under **Scopes**, check only **gist**
+5. Click **Generate token**
+6. Copy the token — you won't see it again
+
+**Step 2 — Add the token to The Forge**
+1. Open The Forge and go to **History**
+2. Paste your token into the GitHub sync field and click **> save**
+3. The app will verify the token and create a private Gist automatically
+4. You'll see "github sync active" when it's working
+
+**Step 3 — Repeat on each device**
+Use the same token on your other devices. The app will find the existing Gist and merge history automatically.
+
+### How it works
+- After every completed session, history is pushed to your private Gist
+- When you open the History screen, the app pulls from the Gist and merges with local data
+- Sessions are deduplicated by ID so nothing gets doubled
+- The most recent assessment wins if there's a conflict
+- Your Gist is private — only visible to you
+
 ## Live app
 
 **[https://uncle-jasper.github.io/forge/](https://uncle-jasper.github.io/forge/)**
@@ -88,7 +119,19 @@ icons/           — app icons in 8 sizes + favicon + Apple touch icon
 
 ## Version
 
+**v1.1.0**
+- GitHub Gist sync — history, assessment, and streak synced automatically across all devices
+- Model example shown on partial/miss verdicts to guide improvement
+- Export history to markdown file
+
 **v1.0.0** — Initial release
+- AI-powered draft analysis (claude-sonnet-4-6)
+- Configurable session length (3, 5, or 7 points)
+- Four focus areas: structure & flow, clarity & concision, sentence rhythm, word choice
+- Exercise-based practice with per-point evaluation
+- Session history (last 20 sessions)
+- Evolving writer assessment across sessions
+- PWA — installable on iOS, Android, and desktop
 
 ---
 

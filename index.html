@@ -211,6 +211,23 @@
   .cat-stat-nums span { color: var(--accent); }
 
   .hidden { display: none !important; }
+  /* SYNC */
+  .sync-status { font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; min-height: 18px; }
+  .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-bright); flex-shrink: 0; }
+  .sync-dot.synced { background: var(--green); }
+  .sync-dot.syncing { background: var(--amber); animation: pulse 1s ease-in-out infinite; }
+  .sync-dot.error { background: var(--red); }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  .github-token-block { background: var(--surface); border: 1px solid var(--border); padding: 18px 20px; margin-bottom: 20px; }
+  .github-token-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+  .github-token-row { display: flex; gap: 8px; align-items: center; }
+  .github-token-input { flex: 1; font-family: 'IBM Plex Mono', monospace; font-size: 12px; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; outline: none; transition: border-color 0.15s; }
+  .github-token-input:focus { border-color: var(--accent); }
+  .github-token-input::placeholder { color: var(--text-dim); }
+  .github-token-saved { font-size: 11px; color: var(--text-dim); margin-top: 8px; display: flex; align-items: center; justify-content: space-between; }
+  .github-token-clear { font-size: 11px; color: var(--text-dim); background: none; border: none; cursor: pointer; font-family: 'IBM Plex Mono', monospace; text-decoration: underline; }
+  .github-token-clear:hover { color: var(--red); }
+
   /* ABOUT MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
@@ -396,6 +413,29 @@
       </div>
     </div>
 
+    <!-- SYNC STATUS -->
+    <div class="sync-status" id="sync-status">
+      <div class="sync-dot" id="sync-dot"></div>
+      <span id="sync-label">not synced</span>
+    </div>
+
+    <!-- GITHUB TOKEN -->
+    <div class="github-token-block" id="github-token-block">
+      <div class="github-token-label">// github sync</div>
+      <div id="github-token-set-row">
+        <div class="github-token-row">
+          <input class="github-token-input" type="password" id="github-token-input" placeholder="ghp_…" autocomplete="off" spellcheck="false"/>
+          <button class="btn btn-primary" id="github-token-save" style="padding:7px 14px;font-size:11px;">> save</button>
+        </div>
+      </div>
+      <div id="github-token-saved-row" class="hidden">
+        <div class="github-token-saved">
+          <span id="github-token-masked"></span>
+          <button class="github-token-clear" id="github-token-clear">remove</button>
+        </div>
+      </div>
+    </div>
+
     <!-- CATEGORY STATS -->
     <div id="cat-stats-section" class="hidden">
       <div class="section-label">by category</div>
@@ -410,6 +450,7 @@
 
     <div class="history-actions">
       <button class="btn btn-primary" id="history-new-btn">> new session</button>
+      <button class="btn btn-ghost" id="history-export-btn">> export .md</button>
       <button class="btn btn-ghost" id="history-clear-btn" style="font-size:11px;">clear history</button>
     </div>
   </div>
@@ -434,7 +475,7 @@
       <div class="modal-tagline">A WRITING TRAINER</div>
       <div class="modal-credit">Vibe coded by Dan</div>
       <div class="modal-credit" style="font-size:11px;color:var(--text-dim);opacity:0.6;margin-top:2px;">&copy; 2026</div>
-      <div class="modal-version">v1.0.0 &nbsp;·&nbsp; <a href="#" class="modal-link" id="changelog-link">changelog</a></div>
+      <div class="modal-version">v1.1.0 &nbsp;·&nbsp; <a href="#" class="modal-link" id="changelog-link">changelog</a></div>
       <div class="modal-links">
         <a href="https://buymeacoffee.com/dandanmian" target="_blank" class="modal-link">☕ buy me a coffee</a>
       </div>
@@ -572,8 +613,8 @@ document.querySelectorAll('.point-opt').forEach(btn=>{
 startBtn.addEventListener('click',startSession);
 
 // ---- NAV ----
-document.getElementById('history-nav-btn').addEventListener('click',()=>{renderHistory();showScreen('screen-history');});
-document.getElementById('summary-history-btn').addEventListener('click',()=>{renderHistory();showScreen('screen-history');});
+document.getElementById('history-nav-btn').addEventListener('click',async()=>{showScreen('screen-history');await renderHistoryWithSync();});
+document.getElementById('summary-history-btn').addEventListener('click',async()=>{showScreen('screen-history');await renderHistoryWithSync();});
 document.getElementById('history-new-btn').addEventListener('click',()=>{userText='';pasteInput.value='';startBtn.disabled=true;document.getElementById('char-count').textContent='0';showScreen('screen-intro');});
 document.getElementById('new-session-btn').addEventListener('click',()=>{userText='';pasteInput.value='';startBtn.disabled=true;document.getElementById('char-count').textContent='0';showScreen('screen-intro');});
 document.getElementById('history-clear-btn').addEventListener('click',()=>{
@@ -737,6 +778,9 @@ document.getElementById('streak-display').textContent=getStreak();
   };
   saveSession(session);
 
+  // Sync to gist
+  syncToGist().catch(()=>{});
+
   // Get this-session note
   try {
     const txt=await callClaude('You are a writing coach. 2-3 sentences max. Direct, specific, no fluff.',
@@ -883,6 +927,226 @@ function renderHistory() {
     }).join('');
   }
 }
+
+
+// ---- EXPORT HISTORY ----
+function exportHistory() {
+  const sessions = getSessions();
+  const assessment = getAssessment();
+  const streak = getStreak();
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+  const lines = [];
+
+  // Header
+  lines.push('# The Forge — Writing History');
+  lines.push(`exported ${dateStr} · ${sessions.length} session${sessions.length!==1?'s':''} · streak ${streak}`);
+  lines.push('');
+  lines.push('─'.repeat(40));
+  lines.push('');
+
+  // Assessment
+  if (assessment) {
+    const updatedDate = new Date(assessment.updatedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+    lines.push('## Writer Assessment');
+    lines.push(`updated ${updatedDate} · ${assessment.sessionCount} session${assessment.sessionCount!==1?'s':''}`);
+    lines.push('');
+    lines.push('**Overall**');
+    lines.push(assessment.overall || '—');
+    lines.push('');
+    lines.push('**Strengths**');
+    (assessment.strengths || []).forEach(s => lines.push(`- ${s}`));
+    if (!assessment.strengths || assessment.strengths.length === 0) lines.push('- none identified yet');
+    lines.push('');
+    lines.push('**Needs Work**');
+    (assessment.weaknesses || []).forEach(s => lines.push(`- ${s}`));
+    if (!assessment.weaknesses || assessment.weaknesses.length === 0) lines.push('- none identified yet');
+    lines.push('');
+    lines.push('**Focus for Next Sessions**');
+    lines.push(assessment.focus || '—');
+    lines.push('');
+    lines.push('─'.repeat(40));
+    lines.push('');
+  }
+
+  // Sessions
+  lines.push('## Sessions');
+  lines.push('');
+
+  if (sessions.length === 0) {
+    lines.push('No sessions yet.');
+  } else {
+    sessions.forEach(s => {
+      const d = new Date(s.date);
+      const sessionDate = d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+      const sessionTime = d.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'});
+      lines.push(`### ${sessionDate} — ${sessionTime}`);
+      lines.push(`Score: ${s.score}`);
+      lines.push('');
+      (s.results || []).forEach(r => {
+        const icon = r.verdict==='pass' ? '✓' : r.verdict==='partial' ? '◑' : r.verdict==='skip' ? '—' : '✗';
+        lines.push(`${icon} ${r.principle} · ${r.category}`);
+      });
+      if (s.note) {
+        lines.push('');
+        lines.push(`> ${s.note}`);
+      }
+      lines.push('');
+    });
+  }
+
+  lines.push('─'.repeat(40));
+  lines.push('');
+  lines.push('*Vibe coded by Dan · The Forge v1.0.0*');
+
+  const blob = new Blob([lines.join('\n')], {type: 'text/markdown'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `forge-history-${now.toISOString().slice(0,10)}.md`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('history-export-btn').addEventListener('click', exportHistory);
+
+// ---- GITHUB GIST SYNC ----
+function getGithubToken() { return localStorage.getItem('forge_github_token')||''; }
+function getGistId() { return localStorage.getItem('forge_gist_id')||''; }
+
+function setSyncStatus(state, msg) {
+  const dot = document.getElementById('sync-dot');
+  const label = document.getElementById('sync-label');
+  if (!dot||!label) return;
+  dot.className = 'sync-dot' + (state?' '+state:'');
+  label.textContent = msg;
+}
+
+function initGithubTokenUI() {
+  const token = getGithubToken();
+  const setRow = document.getElementById('github-token-set-row');
+  const savedRow = document.getElementById('github-token-saved-row');
+  const maskedEl = document.getElementById('github-token-masked');
+  if (token) {
+    setRow.classList.add('hidden');
+    savedRow.classList.remove('hidden');
+    maskedEl.textContent = token.slice(0,8)+'…'+token.slice(-4) + ' · gist sync active';
+    setSyncStatus('synced', 'github sync active');
+  } else {
+    setRow.classList.remove('hidden');
+    savedRow.classList.add('hidden');
+    setSyncStatus('', 'not synced — add github token to enable');
+  }
+}
+
+document.getElementById('github-token-save').addEventListener('click', async () => {
+  const val = document.getElementById('github-token-input').value.trim();
+  if (!val) return;
+  // quick verify
+  const res = await fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${val}` } });
+  if (!res.ok) { alert('Invalid GitHub token — check and try again.'); return; }
+  localStorage.setItem('forge_github_token', val);
+  document.getElementById('github-token-input').value = '';
+  initGithubTokenUI();
+  // immediately push current data
+  await syncToGist();
+  renderHistory();
+});
+
+document.getElementById('github-token-clear').addEventListener('click', () => {
+  if (!confirm('Remove GitHub sync token? Your local history is kept.')) return;
+  localStorage.removeItem('forge_github_token');
+  localStorage.removeItem('forge_gist_id');
+  initGithubTokenUI();
+});
+
+async function syncToGist() {
+  const token = getGithubToken();
+  if (!token) return;
+  const sessions = getSessions();
+  const assessment = getAssessment();
+  const payload = JSON.stringify({ sessions, assessment }, null, 2);
+  const gistId = getGistId();
+  setSyncStatus('syncing', 'syncing…');
+  try {
+    let res;
+    if (gistId) {
+      // update existing gist
+      res = await fetch(`https://api.github.com/gists/${gistId}`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ files: { 'forge-history.json': { content: payload } } })
+      });
+    } else {
+      // create new private gist
+      res = await fetch('https://api.github.com/gists', {
+        method: 'POST',
+        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ description: 'The Forge — writing history', public: false, files: { 'forge-history.json': { content: payload } } })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem('forge_gist_id', data.id);
+      }
+    }
+    if (res.ok) {
+      const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+      setSyncStatus('synced', `synced at ${now}`);
+    } else {
+      setSyncStatus('error', 'sync failed — check token');
+    }
+  } catch(e) {
+    setSyncStatus('error', 'sync failed — check connection');
+  }
+}
+
+async function syncFromGist() {
+  const token = getGithubToken();
+  const gistId = getGistId();
+  if (!token || !gistId) return false;
+  setSyncStatus('syncing', 'fetching from gist…');
+  try {
+    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+      headers: { 'Authorization': `token ${token}` }
+    });
+    if (!res.ok) { setSyncStatus('error', 'could not fetch gist'); return false; }
+    const data = await res.json();
+    const raw = data.files['forge-history.json']?.content;
+    if (!raw) { setSyncStatus('error', 'gist file not found'); return false; }
+    const parsed = JSON.parse(raw);
+    // Merge: combine remote + local sessions, dedupe by id, keep most recent 20
+    const localSessions = getSessions();
+    const remoteSessions = parsed.sessions || [];
+    const merged = [...localSessions, ...remoteSessions]
+      .filter((s,i,arr) => arr.findIndex(x=>x.id===s.id)===i)
+      .sort((a,b)=>b.id-a.id)
+      .slice(0, MAX_SESSIONS);
+    saveSessions(merged);
+    // Use remote assessment if newer
+    const localAssessment = getAssessment();
+    const remoteAssessment = parsed.assessment;
+    if (remoteAssessment && (!localAssessment || new Date(remoteAssessment.updatedAt) > new Date(localAssessment.updatedAt||0))) {
+      saveAssessment(remoteAssessment);
+    }
+    const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+    setSyncStatus('synced', `synced at ${now}`);
+    return true;
+  } catch(e) {
+    setSyncStatus('error', 'sync error');
+    return false;
+  }
+}
+
+// On history screen open: pull from gist first
+const _origRenderHistory = renderHistory;
+async function renderHistoryWithSync() {
+  if (getGithubToken() && getGistId()) {
+    await syncFromGist();
+  }
+  _origRenderHistory();
+  initGithubTokenUI();
+}
+
 
 function toggleSession(i) {
   const detail=document.getElementById(`detail-${i}`);
