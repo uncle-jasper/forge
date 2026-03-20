@@ -136,6 +136,10 @@
   .eval-partial { color: var(--amber); }
   .eval-miss { color: var(--red); }
   .eval-feedback { font-size: 12px; color: var(--text-mid); line-height: 1.8; }
+  .eval-example { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .eval-example-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+  .eval-example-text { font-size: 12px; color: var(--text-mid); line-height: 1.9; font-style: italic; border-left: 2px solid var(--border-bright); padding-left: 12px; }
+
   .eval-next { margin-top: 14px; }
 
   /* SUMMARY */
@@ -351,6 +355,7 @@
     <div class="eval-block hidden" id="eval-block">
       <div class="eval-verdict" id="eval-verdict"></div>
       <div class="eval-feedback" id="eval-feedback"></div>
+      <div class="eval-example hidden" id="eval-example"><div class="eval-example-label">// what a pass looks like</div><div class="eval-example-text" id="eval-example-text"></div></div>
       <div class="eval-next"><button class="btn btn-primary" id="next-btn">next →</button></div>
     </div>
   </div>
@@ -657,7 +662,7 @@ document.getElementById('submit-btn').addEventListener('click',async()=>{
   document.getElementById('submit-btn').disabled=true;
   document.getElementById('submit-btn').textContent='checking…';
   const p=feedbackPoints[currentIndex];
-  const evalSys=`You are a writing coach evaluating whether a writer applied a specific principle. Evaluate application of principle only — voice and style are irrelevant. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (short: "nailed it"/"getting there"/"not quite"), feedback (2-3 sentences referencing their actual writing, specific, no fluff).`;
+  const evalSys=`You are a writing coach evaluating whether a writer applied a specific principle. Evaluate application of principle only — voice and style are irrelevant. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (short: "nailed it"/"getting there"/"not quite"), feedback (2-3 sentences referencing their actual writing, specific, no fluff), example (if verdict is "partial" or "miss": a short 1-3 sentence original passage demonstrating what a passing response would look like for this exact principle and excerpt — written in a neutral voice, not copying the writer's attempt; if verdict is "pass" set example to null).`;
   try {
     const raw=await callClaude(evalSys,`Principle: "${p.principle}"\nExplanation: ${p.explanation}\nExercise: ${p.prompt}\nOriginal: "${p.excerpt}"\n\nWriter's response:\n"${response}"\n\nEvaluate.`);
     const result=JSON.parse(raw.replace(/```json|```/g,'').trim());
@@ -677,6 +682,14 @@ function showEval(result) {
   const icon=result.verdict==='pass'?'✓':result.verdict==='partial'?'◑':'✗';
   document.getElementById('eval-verdict').innerHTML=`<span class="${cls}">${icon} ${result.label}</span>`;
   document.getElementById('eval-feedback').textContent=result.feedback;
+  const exampleEl=document.getElementById('eval-example');
+  const exampleText=document.getElementById('eval-example-text');
+  if(result.example && result.verdict!=='pass') {
+    exampleText.textContent=result.example;
+    exampleEl.classList.remove('hidden');
+  } else {
+    exampleEl.classList.add('hidden');
+  }
   block.classList.remove('hidden');
 }
 
