@@ -1083,7 +1083,8 @@ async function syncToGist() {
   if (!token) return;
   const sessions = getSessions();
   const assessment = getAssessment();
-  const payload = JSON.stringify({ sessions, assessment }, null, 2);
+  const streak = JSON.parse(localStorage.getItem('forge_streak')||'{}');
+  const payload = JSON.stringify({ sessions, assessment, streak }, null, 2);
   const gistId = getGistId();
   setSyncStatus('syncing', 'syncing…');
   try {
@@ -1145,6 +1146,19 @@ async function syncFromGist() {
     const remoteAssessment = parsed.assessment;
     if (remoteAssessment && (!localAssessment || new Date(remoteAssessment.updatedAt) > new Date(localAssessment.updatedAt||0))) {
       saveAssessment(remoteAssessment);
+    }
+    // Sync streak — keep whichever has the higher count for today/yesterday
+    const remoteStreak = parsed.streak;
+    if (remoteStreak) {
+      const localStreak = JSON.parse(localStorage.getItem('forge_streak')||'{}');
+      const today = new Date().toDateString();
+      const yesterday = new Date(Date.now()-86400000).toDateString();
+      const remoteValid = remoteStreak.lastDate===today||remoteStreak.lastDate===yesterday;
+      const localValid = localStreak.lastDate===today||localStreak.lastDate===yesterday;
+      if (remoteValid && (!localValid || (remoteStreak.count||0) > (localStreak.count||0))) {
+        localStorage.setItem('forge_streak', JSON.stringify(remoteStreak));
+        document.getElementById('streak-display').textContent = remoteStreak.count||0;
+      }
     }
     const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
     setSyncStatus('synced', `synced at ${now}`);
