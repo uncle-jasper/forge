@@ -523,6 +523,14 @@ function incrementStreak() {
     return count;
   } catch { return 1; }
 }
+function getTotalSessions() {
+  return parseInt(localStorage.getItem('forge_total_sessions')||'0',10);
+}
+function incrementTotalSessions() {
+  const n=getTotalSessions()+1;
+  localStorage.setItem('forge_total_sessions',n);
+  return n;
+}
 // ---- API KEY ----
 function getStoredKey() { return localStorage.getItem('forge_apikey')||''; }
 function maskKey(k) { return k.slice(0,10)+'…'+k.slice(-4); }
@@ -751,7 +759,7 @@ async function endSession() {
   showScreen('screen-loading');
   animateLoading(['compiling results…','updating assessment…','saving to history…']);
   incrementStreak();
-  // ---- API KEY ----
+  incrementTotalSessions();
 document.getElementById('streak-display').textContent=getStreak();
 
   // Build summary UI
@@ -839,7 +847,9 @@ async function updateAssessment() {
 // ---- RENDER HISTORY ----
 function renderHistory() {
   const sessions=getSessions();
-  document.getElementById('history-count').textContent=`${sessions.length} of ${MAX_SESSIONS} sessions`;
+  const total=getTotalSessions();
+  const stored=sessions.length;
+  document.getElementById('history-count').textContent=total>stored?`${stored} stored · ${total} completed`:stored===MAX_SESSIONS?`${stored} stored · ${stored} completed`:`${stored} session${stored!==1?'s':''}`;
 
   // Assessment
   const assessment=getAssessment();
