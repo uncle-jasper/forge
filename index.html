@@ -661,9 +661,9 @@ function resetToIntro(tab){userText='';pasteInput.value='';startBtn.disabled=tru
 
 // ---- API ----
 function getApiKey(){return localStorage.getItem('forge_apikey')||'';}
-async function callClaude(system,user){
+async function callClaude(system,user,maxTokens=1000){
   const key=getApiKey();if(!key){showScreen('screen-apikey');throw new Error('No API key');}
-  const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system,messages:[{role:"user",content:user}]})});
+  const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:maxTokens,system,messages:[{role:"user",content:user}]})});
   if(res.status===401){localStorage.removeItem('forge_apikey');showScreen('screen-apikey');throw new Error('Invalid API key');}
   const data=await res.json();return data.content[0].text;
 }
@@ -746,7 +746,7 @@ async function startDrill(){
   const catDistStr=Object.entries(catCounts).filter(([,v])=>v>0).map(([k,v])=>`${k}: ${v}`).join(', ');
   animateLoading([`loading the sentence gym…`,`generating ${drillCount} targeted reps…`,`skewing towards weak spots…`,`ready…`]);
   const system=`You are a writing coach generating sentence-level drill exercises for a nonfiction writer who writes slice-of-life stories, personal essays, and travel/expat content.\n\nGenerate exactly ${drillCount} flawed sentences for revision drills. Each sentence should have ONE clear, fixable problem targeting a specific writing principle.\n\nCategory distribution: ${catDistStr}\n\nFor each item return a JSON object with:\n- category: one of "Structure & Flow", "Clarity & Concision", "Sentence Rhythm", "Word Choice"\n- principle: the specific habit being drilled (e.g. "Cut the throat-clearing", "Strengthen the verb")\n- sentence: a realistic flawed sentence (20-45 words) in a nonfiction, slice-of-life style — feel like something a real writer wrote, not a textbook example\n- issue: one sentence explaining exactly what's wrong and what to fix\n\nVary topics: daily observations, travel moments, city life, food, relationships, work, memory, weather, small rituals, urban scenes.\n\nReturn ONLY a valid JSON array of exactly ${drillCount} objects. No preamble, no markdown fences.`;
-  try{const raw=await callClaude(system,`Generate ${drillCount} drill sentences. Distribution: ${catDistStr}`);drillSentences=JSON.parse(raw.replace(/```json|```/g,'').trim());drillIndex=0;drillResults=[];buildDrillDots();showDrillPoint();}
+  try{const raw=await callClaude(system,`Generate ${drillCount} drill sentences. Distribution: ${catDistStr}`,3000);drillSentences=JSON.parse(raw.replace(/```json|```/g,'').trim());drillIndex=0;drillResults=[];buildDrillDots();showDrillPoint();}
   catch(e){alert('Could not generate drill. Please try again.');showScreen('screen-intro');document.getElementById('tab-drill-btn').click();}
 }
 function buildDrillDots(){const c=document.getElementById('drill-progress-dots');c.innerHTML='';drillSentences.forEach((_,i)=>{const d=document.createElement('div');d.className='progress-dot'+(i===0?' active':'');d.id=`ddot-${i}`;c.appendChild(d);});document.getElementById('drill-pos-total').textContent=drillSentences.length;}
