@@ -59,6 +59,19 @@
   }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
+  /* TABS */
+  .tabs { display: flex; gap: 0; margin-bottom: 36px; border-bottom: 1px solid var(--border); }
+  .tab-btn {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    background: transparent; border: none; border-bottom: 2px solid transparent;
+    color: var(--text-dim); padding: 10px 20px 10px 0; cursor: pointer; transition: all 0.12s;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
   /* INTRO */
   .intro-title { font-family: 'Courier Prime', monospace; font-size: 26px; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
   .intro-title em { font-style: italic; color: var(--accent); }
@@ -78,7 +91,7 @@
   textarea:focus, .response-area:focus { border-color: var(--accent); }
   textarea::placeholder, .response-area::placeholder { color: var(--text-dim); font-style: italic; }
   #paste-input { min-height: 170px; }
-  .response-area { min-height: 100px; }
+  .response-area { min-height: 80px; }
   .char-count { font-size: 11px; color: var(--text-dim); margin-top: 5px; text-align: right; }
 
   /* POINT SELECTOR */
@@ -139,7 +152,6 @@
   .eval-example { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
   .eval-example-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
   .eval-example-text { font-size: 12px; color: var(--text-mid); line-height: 1.9; font-style: italic; border-left: 2px solid var(--border-bright); padding-left: 12px; }
-
   .eval-next { margin-top: 14px; }
 
   /* SUMMARY */
@@ -197,7 +209,6 @@
   .history-detail-icon { flex-shrink: 0; width: 12px; }
   .history-detail-principle { color: var(--text-mid); flex: 1; }
   .history-detail-cat { color: var(--text-dim); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
-
   .history-empty { font-size: 12px; color: var(--text-dim); font-style: italic; padding: 32px 0; text-align: center; }
   .history-actions { display: flex; gap: 10px; }
 
@@ -211,6 +222,7 @@
   .cat-stat-nums span { color: var(--accent); }
 
   .hidden { display: none !important; }
+
   /* SYNC */
   .sync-status { font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; min-height: 18px; }
   .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-bright); flex-shrink: 0; }
@@ -245,13 +257,14 @@
   .modal-link:hover { color: var(--accent); }
   .modal-link-sep { color: var(--border-bright); font-size: 11px; }
   .modal-anthropic { font-size: 10px; color: var(--text-dim); opacity: 0.6; letter-spacing: 0.5px; }
+
   /* FOOTER */
   .app-footer { text-align: center; padding: 32px 0 48px; }
   .app-footer-text { font-size: 10px; color: var(--text-dim); opacity: 0.4; letter-spacing: 0.5px; }
+
   /* ABOUT BTN */
   .header-about-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: transparent; border: none; color: var(--text-dim); padding: 5px 4px; cursor: pointer; transition: color 0.12s; opacity: 0.5; }
   .header-about-btn:hover { color: var(--accent); opacity: 1; }
-
 
   /* API KEY SCREEN */
   .apikey-wrap { padding-top: 60px; max-width: 480px; }
@@ -274,6 +287,56 @@
   .header-key-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 5px 12px; cursor: pointer; transition: all 0.12s; }
   .header-key-btn:hover { border-color: var(--text-mid); color: var(--text); }
 
+  /* ---- DRILL MODULE ---- */
+  .drill-intro-title { font-family: 'Courier Prime', monospace; font-size: 26px; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
+  .drill-intro-title em { font-style: italic; color: var(--accent); }
+  .drill-intro-sub { color: var(--text-dim); font-size: 12px; margin-bottom: 32px; line-height: 1.9; max-width: 480px; }
+
+  .drill-meta-row { display: flex; gap: 2px; margin-bottom: 28px; }
+  .drill-meta-cell { flex: 1; background: var(--surface); border: 1px solid var(--border); padding: 14px 16px; }
+  .drill-meta-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+  .drill-meta-val { font-size: 18px; font-family: 'Courier Prime', monospace; color: var(--accent); }
+  .drill-meta-sub { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+
+  /* Drill sentence card */
+  .drill-card { background: var(--surface); border: 1px solid var(--border); padding: 20px 22px; margin-bottom: 16px; animation: slideup 0.22s ease; }
+  .drill-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .drill-card-category { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+  .drill-card-principle { font-size: 11px; color: var(--text-dim); }
+  .drill-original-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+  .drill-original { font-size: 13px; color: var(--text-mid); font-style: italic; line-height: 1.8; margin-bottom: 16px; padding: 10px 14px; border-left: 2px solid var(--border-bright); background: var(--bg); }
+  .drill-issue { font-size: 12px; color: var(--text-dim); line-height: 1.8; margin-bottom: 14px; }
+  .drill-response-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+
+  /* Drill eval inside card */
+  .drill-eval { margin-top: 12px; padding: 14px 16px; border: 1px solid; animation: slideup 0.18s ease; }
+  .drill-eval.pass { border-color: var(--green); background: var(--green-dim); }
+  .drill-eval.partial { border-color: var(--amber); background: var(--accent-dim); }
+  .drill-eval.miss { border-color: var(--red); background: var(--red-dim); }
+  .drill-eval-verdict { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
+  .drill-eval-feedback { font-size: 12px; color: var(--text-mid); line-height: 1.8; }
+  .drill-eval-example { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .drill-eval-example-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
+  .drill-eval-example-text { font-size: 12px; color: var(--text-mid); line-height: 1.9; font-style: italic; border-left: 2px solid var(--border-bright); padding-left: 12px; }
+  .drill-next-btn-wrap { margin-top: 12px; }
+
+  /* Drill summary */
+  .drill-summary-top { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .drill-summary-title { font-family: 'Courier Prime', monospace; font-size: 22px; font-weight: 400; margin-bottom: 6px; }
+  .drill-summary-score-line { font-size: 12px; color: var(--text-dim); }
+  .drill-summary-score-line strong { color: var(--accent); }
+  .drill-summary-items { margin-bottom: 28px; display: flex; flex-direction: column; gap: 2px; }
+  .drill-summary-row { display: flex; gap: 14px; padding: 13px 16px; background: var(--surface); border: 1px solid var(--border); font-size: 12px; }
+  .drill-summary-icon { flex-shrink: 0; width: 14px; margin-top: 1px; }
+  .drill-summary-principle { color: var(--text); margin-bottom: 2px; font-weight: 500; }
+  .drill-summary-cat { color: var(--text-dim); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+  .drill-summary-note { color: var(--text-dim); margin-top: 4px; line-height: 1.7; }
+  .drill-summary-actions { display: flex; gap: 10px; }
+
+  /* Drill weak-category callout */
+  .drill-weak-block { background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--red); padding: 16px 20px; margin-bottom: 24px; }
+  .drill-weak-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .drill-weak-body { font-size: 12px; color: var(--text-mid); line-height: 1.9; }
 </style>
 </head>
 <body>
@@ -317,28 +380,68 @@
     </div>
   </div>
 
-  <!-- INTRO -->
+  <!-- INTRO (tabbed) -->
   <div class="screen active" id="screen-intro">
-    <div class="intro-title">Sharpen the work.<br><em>Keep the voice.</em></div>
-    <p class="intro-sub">Paste or upload a draft. The Forge finds the weak points — structure, clarity, rhythm, word choice — then puts you to work on them, one at a time.</p>
-    <div class="section-label">input</div>
-    <div class="drop-zone" id="drop-zone">
-      <span style="color:var(--text-dim)">↑</span>
-      <span class="drop-zone-text">drop a <strong>.txt or .md file</strong> — or <strong id="browse-link">browse</strong></span>
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-session-btn">session</button>
+      <button class="tab-btn" id="tab-drill-btn">drill</button>
     </div>
-    <input type="file" id="file-input" accept=".txt,.md">
-    <div class="or-line">or</div>
-    <textarea id="paste-input" placeholder="paste your draft here…"></textarea>
-    <div class="char-count"><span id="char-count">0</span> chars</div>
-    <div class="point-selector">
-      <div class="point-selector-label">// how many points to address this session?</div>
-      <div class="point-options">
-        <button class="point-opt" data-val="3">3</button>
-        <button class="point-opt selected" data-val="5">5</button>
-        <button class="point-opt" data-val="7">7</button>
+
+    <!-- SESSION TAB -->
+    <div class="tab-panel active" id="tab-session">
+      <div class="intro-title">Sharpen the work.<br><em>Keep the voice.</em></div>
+      <p class="intro-sub">Paste or upload a draft. The Forge finds the weak points — structure, clarity, rhythm, word choice — then puts you to work on them, one at a time.</p>
+      <div class="section-label">input</div>
+      <div class="drop-zone" id="drop-zone">
+        <span style="color:var(--text-dim)">↑</span>
+        <span class="drop-zone-text">drop a <strong>.txt or .md file</strong> — or <strong id="browse-link">browse</strong></span>
       </div>
+      <input type="file" id="file-input" accept=".txt,.md">
+      <div class="or-line">or</div>
+      <textarea id="paste-input" placeholder="paste your draft here…"></textarea>
+      <div class="char-count"><span id="char-count">0</span> chars</div>
+      <div class="point-selector">
+        <div class="point-selector-label">// how many points to address this session?</div>
+        <div class="point-options">
+          <button class="point-opt" data-val="3">3</button>
+          <button class="point-opt selected" data-val="5">5</button>
+          <button class="point-opt" data-val="7">7</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="start-btn" disabled>> begin session</button>
     </div>
-    <button class="btn btn-primary" id="start-btn" disabled>> begin session</button>
+
+    <!-- DRILL TAB -->
+    <div class="tab-panel" id="tab-drill">
+      <div class="drill-intro-title">The sentence gym.<br><em>Rep by rep.</em></div>
+      <p class="drill-intro-sub">Targeted reps on individual writing habits — no draft required. Each sentence has one problem. You fix it. The gym adapts to your weak spots over time.</p>
+
+      <!-- Stats row -->
+      <div class="drill-meta-row" id="drill-meta-row">
+        <div class="drill-meta-cell">
+          <div class="drill-meta-label">total reps</div>
+          <div class="drill-meta-val" id="drill-total-reps">0</div>
+        </div>
+        <div class="drill-meta-cell">
+          <div class="drill-meta-label">pass rate</div>
+          <div class="drill-meta-val" id="drill-pass-rate">—</div>
+        </div>
+        <div class="drill-meta-cell">
+          <div class="drill-meta-label">weakest area</div>
+          <div class="drill-meta-val" id="drill-weakest" style="font-size:11px;line-height:1.4;padding-top:4px;">—</div>
+        </div>
+      </div>
+
+      <div class="point-selector">
+        <div class="point-selector-label">// how many sentences this drill?</div>
+        <div class="point-options">
+          <button class="point-opt drill-count-opt" data-val="5">5</button>
+          <button class="point-opt drill-count-opt selected" data-val="10">10</button>
+          <button class="point-opt drill-count-opt" data-val="15">15</button>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="drill-start-btn">> begin drill</button>
+    </div>
   </div>
 
   <!-- LOADING -->
@@ -392,6 +495,34 @@
     <div class="summary-actions">
       <button class="btn btn-primary" id="new-session-btn">> new session</button>
       <button class="btn btn-ghost" id="summary-history-btn">view history →</button>
+    </div>
+  </div>
+
+  <!-- DRILL SESSION -->
+  <div class="screen" id="screen-drill">
+    <div class="session-bar">
+      <div class="session-pos">rep <span id="drill-pos-current">1</span> of <span id="drill-pos-total">10</span></div>
+      <div class="progress-dots" id="drill-progress-dots"></div>
+      <button class="btn btn-ghost" id="drill-quit-btn" style="font-size:11px;padding:6px 14px;">end drill</button>
+    </div>
+    <div id="drill-card-area"></div>
+  </div>
+
+  <!-- DRILL SUMMARY -->
+  <div class="screen" id="screen-drill-summary">
+    <div class="drill-summary-top">
+      <div class="section-label">drill complete</div>
+      <div class="drill-summary-title">Reps logged.</div>
+      <div class="drill-summary-score-line">scored <strong id="drill-summary-score">—</strong></div>
+    </div>
+    <div class="drill-weak-block hidden" id="drill-weak-block">
+      <div class="drill-weak-label">// focus area</div>
+      <div class="drill-weak-body" id="drill-weak-body"></div>
+    </div>
+    <div class="drill-summary-items" id="drill-summary-items"></div>
+    <div class="drill-summary-actions">
+      <button class="btn btn-primary" id="drill-again-btn">> drill again</button>
+      <button class="btn btn-ghost" id="drill-session-btn">run a session →</button>
     </div>
   </div>
 
@@ -459,7 +590,6 @@
 
 <div class="app-footer"><span class="app-footer-text">Vibe coded by Dan &copy; 2026</span></div>
 
-
 <!-- ABOUT MODAL -->
 <div class="modal-overlay" id="about-modal">
   <div class="modal">
@@ -475,7 +605,7 @@
       <div class="modal-tagline">A WRITING TRAINER</div>
       <div class="modal-credit">Vibe coded by Dan</div>
       <div class="modal-credit" style="font-size:11px;color:var(--text-dim);opacity:0.6;margin-top:2px;">&copy; 2026</div>
-      <div class="modal-version">v1.1.0 &nbsp;·&nbsp; <a href="#" class="modal-link" id="changelog-link">changelog</a></div>
+      <div class="modal-version">v1.2.0 &nbsp;·&nbsp; <a href="#" class="modal-link" id="changelog-link">changelog</a></div>
       <div class="modal-links">
         <a href="https://buymeacoffee.com/dandanmian" target="_blank" class="modal-link">☕ buy me a coffee</a>
       </div>
@@ -489,13 +619,14 @@
 let feedbackPoints=[], currentIndex=0, sessionResults=[], userText='', pointCount=5, isEvaluating=false;
 const MAX_SESSIONS = 20;
 
+// ---- DRILL STATE ----
+let drillSentences=[], drillIndex=0, drillResults=[], drillCount=10, isDrillEvaluating=false;
+
 // ---- STORAGE HELPERS ----
 function getSessions() {
   try { return JSON.parse(localStorage.getItem('forge_sessions')||'[]'); } catch { return []; }
 }
-function saveSessions(s) {
-  localStorage.setItem('forge_sessions', JSON.stringify(s));
-}
+function saveSessions(s) { localStorage.setItem('forge_sessions', JSON.stringify(s)); }
 function saveSession(session) {
   let sessions = getSessions();
   sessions.unshift(session);
@@ -523,14 +654,80 @@ function incrementStreak() {
     return count;
   } catch { return 1; }
 }
-function getTotalSessions() {
-  return parseInt(localStorage.getItem('forge_total_sessions')||'0',10);
+
+// ---- DRILL STORAGE ----
+function getDrillHistory() {
+  try { return JSON.parse(localStorage.getItem('forge_drill_history')||'[]'); } catch { return []; }
 }
-function incrementTotalSessions() {
-  const n=getTotalSessions()+1;
-  localStorage.setItem('forge_total_sessions',n);
-  return n;
+function saveDrillHistory(h) { localStorage.setItem('forge_drill_history', JSON.stringify(h)); }
+function saveDrillSession(session) {
+  let h = getDrillHistory();
+  h.unshift(session);
+  if (h.length > 50) h = h.slice(0, 50);
+  saveDrillHistory(h);
 }
+
+// Compute combined category weakness from sessions + drill history
+function getCombinedCatStats() {
+  const cats = ['Structure & Flow','Clarity & Concision','Sentence Rhythm','Word Choice'];
+  const totals = {}, passes = {};
+  cats.forEach(c => { totals[c]=0; passes[c]=0; });
+
+  // Session history
+  getSessions().forEach(s => {
+    (s.results||[]).forEach(r => {
+      if (r.verdict==='skip') return;
+      totals[r.category]=(totals[r.category]||0)+1;
+      passes[r.category]=(passes[r.category]||0)+(r.verdict==='pass'?1:0);
+    });
+  });
+
+  // Drill history
+  getDrillHistory().forEach(d => {
+    (d.results||[]).forEach(r => {
+      if (r.verdict==='skip') return;
+      totals[r.category]=(totals[r.category]||0)+1;
+      passes[r.category]=(passes[r.category]||0)+(r.verdict==='pass'?1:0);
+    });
+  });
+
+  return cats.map(cat => ({
+    cat,
+    total: totals[cat]||0,
+    pass: passes[cat]||0,
+    rate: totals[cat]>0 ? passes[cat]/totals[cat] : null
+  }));
+}
+
+// Returns weighted category distribution for drill generation
+// Weak categories get higher weight
+function getDrillCategoryWeights() {
+  const stats = getCombinedCatStats();
+  const cats = ['Structure & Flow','Clarity & Concision','Sentence Rhythm','Word Choice'];
+
+  // If no data, uniform
+  const hasData = stats.some(s => s.total > 0);
+  if (!hasData) return cats.map(c => ({ cat: c, weight: 1 }));
+
+  // Score = 1 - pass_rate (miss rate). Unknown = 0.5 (neutral)
+  const weights = stats.map(s => ({
+    cat: s.cat,
+    weight: s.total > 0 ? Math.max(0.1, 1 - s.rate) : 0.5
+  }));
+
+  // Boost low performers: square the weight to amplify spread
+  const boosted = weights.map(w => ({ cat: w.cat, weight: w.weight * w.weight }));
+  return boosted;
+}
+
+function getWeakestCategory() {
+  const stats = getCombinedCatStats();
+  const withData = stats.filter(s => s.total > 0);
+  if (withData.length === 0) return null;
+  withData.sort((a,b) => a.rate - b.rate);
+  return withData[0];
+}
+
 // ---- API KEY ----
 function getStoredKey() { return localStorage.getItem('forge_apikey')||''; }
 function maskKey(k) { return k.slice(0,10)+'…'+k.slice(-4); }
@@ -538,7 +735,6 @@ function maskKey(k) { return k.slice(0,10)+'…'+k.slice(-4); }
 function initApiKey() {
   const key=getStoredKey();
   if(!key){ showScreen('screen-apikey'); }
-  // setup key screen
   const input=document.getElementById('apikey-input');
   const toggle=document.getElementById('apikey-toggle');
   const saveBtn=document.getElementById('apikey-save-btn');
@@ -585,7 +781,6 @@ function initApiKey() {
   document.getElementById('header-key-btn').addEventListener('click',()=>{ refreshKeyUI(); showScreen('screen-apikey'); });
 }
 initApiKey();
-
 document.getElementById('streak-display').textContent=getStreak();
 
 // ---- SCREEN ----
@@ -593,6 +788,61 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
+
+// ---- TABS ----
+document.getElementById('tab-session-btn').addEventListener('click', () => {
+  document.getElementById('tab-session-btn').classList.add('active');
+  document.getElementById('tab-drill-btn').classList.remove('active');
+  document.getElementById('tab-session').classList.add('active');
+  document.getElementById('tab-drill').classList.remove('active');
+});
+document.getElementById('tab-drill-btn').addEventListener('click', () => {
+  document.getElementById('tab-drill-btn').classList.add('active');
+  document.getElementById('tab-session-btn').classList.remove('active');
+  document.getElementById('tab-drill').classList.add('active');
+  document.getElementById('tab-session').classList.remove('active');
+  refreshDrillStats();
+});
+
+function refreshDrillStats() {
+  const history = getDrillHistory();
+  let totalReps = 0, totalPass = 0;
+  history.forEach(d => {
+    (d.results||[]).forEach(r => {
+      if (r.verdict==='skip') return;
+      totalReps++;
+      if (r.verdict==='pass') totalPass++;
+    });
+  });
+  // Also count session reps
+  getSessions().forEach(s => {
+    (s.results||[]).forEach(r => {
+      if (r.verdict==='skip') return;
+      totalReps++;
+      if (r.verdict==='pass') totalPass++;
+    });
+  });
+  document.getElementById('drill-total-reps').textContent = totalReps;
+  document.getElementById('drill-pass-rate').textContent = totalReps > 0 ? Math.round((totalPass/totalReps)*100)+'%' : '—';
+  const weakest = getWeakestCategory();
+  const weakEl = document.getElementById('drill-weakest');
+  if (weakest) {
+    weakEl.textContent = weakest.cat;
+    weakEl.style.fontSize = '11px';
+  } else {
+    weakEl.textContent = '—';
+    weakEl.style.fontSize = '18px';
+  }
+}
+
+// ---- DRILL COUNT ----
+document.querySelectorAll('.drill-count-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.drill-count-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    drillCount = parseInt(btn.dataset.val);
+  });
+});
 
 // ---- INTRO ----
 const pasteInput=document.getElementById('paste-input');
@@ -623,13 +873,27 @@ startBtn.addEventListener('click',startSession);
 // ---- NAV ----
 document.getElementById('history-nav-btn').addEventListener('click',async()=>{showScreen('screen-history');await renderHistoryWithSync();});
 document.getElementById('summary-history-btn').addEventListener('click',async()=>{showScreen('screen-history');await renderHistoryWithSync();});
-document.getElementById('history-new-btn').addEventListener('click',()=>{userText='';pasteInput.value='';startBtn.disabled=true;document.getElementById('char-count').textContent='0';showScreen('screen-intro');});
-document.getElementById('new-session-btn').addEventListener('click',()=>{userText='';pasteInput.value='';startBtn.disabled=true;document.getElementById('char-count').textContent='0';showScreen('screen-intro');});
+document.getElementById('history-new-btn').addEventListener('click',()=>{ resetToIntro('session'); });
+document.getElementById('new-session-btn').addEventListener('click',()=>{ resetToIntro('session'); });
 document.getElementById('history-clear-btn').addEventListener('click',()=>{
   if(!confirm('Clear all session history and assessment? This cannot be undone.')) return;
   localStorage.removeItem('forge_sessions'); localStorage.removeItem('forge_assessment');
   renderHistory();
 });
+document.getElementById('drill-again-btn').addEventListener('click', () => { resetToIntro('drill'); });
+document.getElementById('drill-session-btn').addEventListener('click', () => { resetToIntro('session'); });
+
+function resetToIntro(tab) {
+  userText=''; pasteInput.value=''; startBtn.disabled=true;
+  document.getElementById('char-count').textContent='0';
+  showScreen('screen-intro');
+  if (tab === 'drill') {
+    document.getElementById('tab-drill-btn').click();
+    refreshDrillStats();
+  } else {
+    document.getElementById('tab-session-btn').click();
+  }
+}
 
 // ---- API ----
 function getApiKey() { return localStorage.getItem('forge_apikey')||''; }
@@ -702,7 +966,7 @@ function showPoint() {
   const fb=document.getElementById('fb-block');fb.style.animation='none';fb.offsetHeight;fb.style.animation='';
 }
 
-// ---- SUBMIT ----
+// ---- SUBMIT SESSION ----
 document.getElementById('submit-btn').addEventListener('click',async()=>{
   const response=document.getElementById('user-response').value.trim();
   if(!response||response.length<10) return;
@@ -759,10 +1023,8 @@ async function endSession() {
   showScreen('screen-loading');
   animateLoading(['compiling results…','updating assessment…','saving to history…']);
   incrementStreak();
-  incrementTotalSessions();
-document.getElementById('streak-display').textContent=getStreak();
+  document.getElementById('streak-display').textContent=getStreak();
 
-  // Build summary UI
   const c=document.getElementById('summary-items');c.innerHTML='';
   let passCount=0;
   sessionResults.forEach(r=>{
@@ -775,34 +1037,26 @@ document.getElementById('streak-display').textContent=getStreak();
   const total=sessionResults.filter(r=>r.verdict!=='skip').length;
   document.getElementById('summary-score').textContent=`${passCount}/${total}`;
 
-  // Save session to history
   const session = {
     id: Date.now(),
     date: new Date().toISOString(),
     score: `${passCount}/${total}`,
-    passCount,
-    total,
+    passCount, total,
     results: sessionResults.map(r=>({principle:r.principle,category:r.category,verdict:r.verdict}))
   };
   saveSession(session);
-
-  // Sync to gist
   syncToGist().catch(()=>{});
 
-  // Get this-session note
   try {
     const txt=await callClaude('You are a writing coach. 2-3 sentences max. Direct, specific, no fluff.',
       `Session results:\n${sessionResults.map(r=>`- ${r.principle} (${r.category}): ${r.verdict}`).join('\n')}\n\nWhat should this writer focus on from this session?`);
     document.getElementById('patterns-body').textContent=txt;
     session.note=txt;
-    // Update the stored session note
     const sessions=getSessions();
     if(sessions[0]&&sessions[0].id===session.id){sessions[0].note=txt;saveSessions(sessions);}
   } catch { document.getElementById('patterns-body').textContent='Keep at it.'; }
 
-  // Generate evolving assessment from full history
   await updateAssessment();
-
   showScreen('screen-summary');
 }
 
@@ -810,8 +1064,6 @@ document.getElementById('streak-display').textContent=getStreak();
 async function updateAssessment() {
   const sessions=getSessions();
   if(sessions.length===0) return;
-
-  // Compile aggregate data
   const catTotals={}, catPass={};
   const principleRecord={};
   sessions.forEach(s=>{
@@ -824,10 +1076,8 @@ async function updateAssessment() {
       if(r.verdict==='pass') principleRecord[r.principle].pass++;
     });
   });
-
   const summary=Object.entries(catTotals).map(([cat,total])=>`${cat}: ${catPass[cat]||0}/${total} passed`).join(', ');
   const principles=Object.entries(principleRecord).map(([p,d])=>`"${p}" (${d.category}): ${d.pass}/${d.total} passed`).join('\n');
-
   try {
     const raw=await callClaude(
       `You are a writing coach generating a progressive assessment for a writer based on their training history. Return ONLY valid JSON with:
@@ -841,17 +1091,241 @@ async function updateAssessment() {
     assessment.updatedAt=new Date().toISOString();
     assessment.sessionCount=sessions.length;
     saveAssessment(assessment);
-  } catch(e) { /* silently fail, assessment will just not update */ }
+  } catch(e) {}
 }
 
-// ---- RENDER HISTORY ----
+// ========== DRILL MODULE ==========
+
+document.getElementById('drill-start-btn').addEventListener('click', startDrill);
+
+async function startDrill() {
+  showScreen('screen-loading');
+  const weights = getDrillCategoryWeights();
+
+  // Build a weighted category list for the prompt
+  const weightStr = weights.map(w => `${w.cat}: weight ${w.weight.toFixed(2)}`).join(', ');
+  // Pick categories proportionally
+  const totalWeight = weights.reduce((s,w)=>s+w.weight,0);
+  const catCounts = {};
+  weights.forEach(w => { catCounts[w.cat] = 0; });
+
+  // Assign each drill slot to a category using weighted random
+  const assignments = [];
+  for (let i=0; i<drillCount; i++) {
+    let r = Math.random() * totalWeight;
+    for (const w of weights) {
+      r -= w.weight;
+      if (r <= 0) { assignments.push(w.cat); break; }
+    }
+    if (assignments.length < i+1) assignments.push(weights[weights.length-1].cat);
+  }
+  assignments.forEach(c => catCounts[c]++);
+
+  const catDistStr = Object.entries(catCounts).filter(([,v])=>v>0).map(([k,v])=>`${k}: ${v}`).join(', ');
+
+  animateLoading([`loading the sentence gym…`, `generating ${drillCount} targeted reps…`, `skewing towards weak spots…`, `ready…`]);
+
+  const system = `You are a writing coach generating sentence-level drill exercises for a nonfiction writer who writes slice-of-life stories, personal essays, and travel/expat content.
+
+Generate exactly ${drillCount} flawed sentences for revision drills. Each sentence should have ONE clear, fixable problem targeting a specific writing principle.
+
+Category distribution to use: ${catDistStr}
+
+For each drill item return a JSON object with:
+- category: one of "Structure & Flow", "Clarity & Concision", "Sentence Rhythm", "Word Choice"
+- principle: the specific habit being drilled (e.g. "Cut the throat-clearing", "Strengthen the verb", "Vary sentence length")
+- sentence: a realistic flawed sentence (20-45 words) written in a nonfiction, slice-of-life style. Make it feel like something a real writer actually wrote — not a textbook example. The flaw should be genuine but fixable.
+- issue: one sentence explaining exactly what's wrong and what to fix
+
+Vary topics across: daily observations, travel moments, city life, food, relationships, work, memory, weather, small rituals, urban scenes. No two sentences should feel alike.
+
+Return ONLY a valid JSON array of exactly ${drillCount} objects. No preamble, no markdown fences.`;
+
+  try {
+    const raw = await callClaude(system, `Generate ${drillCount} drill sentences. Category distribution: ${catDistStr}`);
+    drillSentences = JSON.parse(raw.replace(/```json|```/g,'').trim());
+    drillIndex = 0; drillResults = [];
+    buildDrillDots();
+    showDrillPoint();
+  } catch(e) {
+    alert('Could not generate drill. Please try again.');
+    showScreen('screen-intro');
+    document.getElementById('tab-drill-btn').click();
+  }
+}
+
+function buildDrillDots() {
+  const c = document.getElementById('drill-progress-dots'); c.innerHTML='';
+  drillSentences.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'progress-dot' + (i===0?' active':'');
+    d.id = `ddot-${i}`;
+    c.appendChild(d);
+  });
+  document.getElementById('drill-pos-total').textContent = drillSentences.length;
+}
+
+function updateDrillDots() {
+  drillSentences.forEach((_,i) => {
+    const d = document.getElementById(`ddot-${i}`);
+    d.className = 'progress-dot' + (i<drillIndex?' done': i===drillIndex?' active':'');
+  });
+}
+
+function showDrillPoint() {
+  showScreen('screen-drill');
+  isDrillEvaluating = false;
+  const s = drillSentences[drillIndex];
+  document.getElementById('drill-pos-current').textContent = drillIndex + 1;
+  updateDrillDots();
+
+  const area = document.getElementById('drill-card-area');
+  area.innerHTML = `
+    <div class="drill-card" id="drill-card">
+      <div class="drill-card-top">
+        <span class="drill-card-category">${s.category}</span>
+        <span class="drill-card-principle">${s.principle}</span>
+      </div>
+      <div class="drill-original-label">original sentence</div>
+      <div class="drill-original">${s.sentence}</div>
+      <div class="drill-issue">${s.issue}</div>
+      <div class="drill-response-label">your revision</div>
+      <textarea class="response-area" id="drill-response" placeholder="rewrite the sentence…" style="min-height:70px;"></textarea>
+      <div class="exercise-actions">
+        <button class="btn btn-green" id="drill-submit-btn">> check</button>
+        <button class="btn btn-ghost" id="drill-skip-btn">skip</button>
+      </div>
+    </div>`;
+
+  document.getElementById('drill-submit-btn').addEventListener('click', submitDrillRep);
+  document.getElementById('drill-skip-btn').addEventListener('click', skipDrillRep);
+}
+
+async function submitDrillRep() {
+  const response = document.getElementById('drill-response').value.trim();
+  if (!response || response.length < 5) return;
+  if (isDrillEvaluating) return;
+  isDrillEvaluating = true;
+
+  const submitBtn = document.getElementById('drill-submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'checking…';
+
+  const s = drillSentences[drillIndex];
+  const evalSys = `You are a writing coach evaluating a sentence revision drill. The writer was asked to fix one specific problem. Evaluate ONLY whether they fixed that problem — ignore everything else about their style. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (very short: "nailed it"/"getting there"/"not quite"), feedback (1-2 sentences, specific to their revision), example (if verdict is "partial" or "miss": a clean 1-sentence revision demonstrating a passing fix; if "pass" set to null).`;
+
+  try {
+    const raw = await callClaude(evalSys,
+      `Principle: "${s.principle}"\nIssue: ${s.issue}\nOriginal: "${s.sentence}"\n\nWriter's revision:\n"${response}"\n\nEvaluate.`);
+    const result = JSON.parse(raw.replace(/```json|```/g,'').trim());
+    drillResults.push({ principle: s.principle, category: s.category, original: s.sentence, revision: response, ...result });
+    showDrillEval(result);
+  } catch {
+    drillResults.push({ principle: s.principle, category: s.category, verdict: 'skip', label: 'error', feedback: 'Could not evaluate.' });
+    advanceDrill();
+  }
+}
+
+function showDrillEval(result) {
+  const cls = result.verdict==='pass'?'eval-pass': result.verdict==='partial'?'eval-partial':'eval-miss';
+  const icon = result.verdict==='pass'?'✓': result.verdict==='partial'?'◑':'✗';
+
+  const exampleHtml = (result.example && result.verdict!=='pass') ? `
+    <div class="drill-eval-example">
+      <div class="drill-eval-example-label">// what a pass looks like</div>
+      <div class="drill-eval-example-text">${result.example}</div>
+    </div>` : '';
+
+  const evalHtml = `
+    <div class="drill-eval ${result.verdict}" id="drill-eval-block">
+      <div class="drill-eval-verdict"><span class="${cls}">${icon} ${result.label}</span></div>
+      <div class="drill-eval-feedback">${result.feedback}</div>
+      ${exampleHtml}
+      <div class="drill-next-btn-wrap">
+        <button class="btn btn-primary" id="drill-next-btn">${drillIndex+1 >= drillSentences.length ? 'see results →' : 'next rep →'}</button>
+      </div>
+    </div>`;
+
+  document.getElementById('drill-card').insertAdjacentHTML('beforeend', evalHtml);
+  document.getElementById('drill-next-btn').addEventListener('click', advanceDrill);
+
+  // Hide submit/skip
+  const submitBtn = document.getElementById('drill-submit-btn');
+  const skipBtn = document.getElementById('drill-skip-btn');
+  if (submitBtn) submitBtn.style.display = 'none';
+  if (skipBtn) skipBtn.style.display = 'none';
+}
+
+function skipDrillRep() {
+  drillResults.push({ principle: drillSentences[drillIndex].principle, category: drillSentences[drillIndex].category, verdict: 'skip', label: 'skipped', feedback: '—' });
+  advanceDrill();
+}
+
+function advanceDrill() {
+  drillIndex++;
+  if (drillIndex >= drillSentences.length) endDrill();
+  else showDrillPoint();
+}
+
+document.getElementById('drill-quit-btn').addEventListener('click', () => {
+  if (!confirm('End drill early?')) return;
+  while (drillResults.length < drillSentences.length) {
+    const i = drillResults.length;
+    drillResults.push({ principle: drillSentences[i].principle, category: drillSentences[i].category, verdict: 'skip', label: 'skipped', feedback: '—' });
+  }
+  endDrill();
+});
+
+function endDrill() {
+  // Build summary
+  let passCount = 0;
+  const total = drillResults.filter(r => r.verdict !== 'skip').length;
+  drillResults.forEach(r => { if (r.verdict === 'pass') passCount++; });
+
+  document.getElementById('drill-summary-score').textContent = `${passCount}/${total}`;
+
+  // Per-row breakdown
+  const itemsEl = document.getElementById('drill-summary-items');
+  itemsEl.innerHTML = '';
+  drillResults.forEach(r => {
+    const icon = r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`: r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`: r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;
+    const row = document.createElement('div');
+    row.className = 'drill-summary-row';
+    row.innerHTML = `<div class="drill-summary-icon">${icon}</div><div><div class="drill-summary-principle">${r.principle}</div><div class="drill-summary-cat">${r.category}</div>${r.feedback && r.feedback!=='—'?`<div class="drill-summary-note">${r.feedback}</div>`:''}</div>`;
+    itemsEl.appendChild(row);
+  });
+
+  // Save drill session
+  const drillSession = {
+    id: Date.now(),
+    date: new Date().toISOString(),
+    score: `${passCount}/${total}`,
+    passCount, total,
+    results: drillResults.map(r => ({ principle: r.principle, category: r.category, verdict: r.verdict }))
+  };
+  saveDrillSession(drillSession);
+
+  // Weak category callout
+  const weakest = getWeakestCategory();
+  const weakBlock = document.getElementById('drill-weak-block');
+  const weakBody = document.getElementById('drill-weak-body');
+  if (weakest && weakest.total >= 3) {
+    const pct = Math.round(weakest.rate * 100);
+    weakBody.textContent = `Your weakest area is ${weakest.cat} — ${pct}% pass rate across all training. The next drill will weight this category more heavily.`;
+    weakBlock.classList.remove('hidden');
+  } else {
+    weakBlock.classList.add('hidden');
+  }
+
+  showScreen('screen-drill-summary');
+}
+
+// ========== HISTORY ==========
+
 function renderHistory() {
   const sessions=getSessions();
-  const total=getTotalSessions();
-  const stored=sessions.length;
-  document.getElementById('history-count').textContent=total>stored?`${stored} stored · ${total} completed`:stored===MAX_SESSIONS?`${stored} stored · ${stored} completed`:`${stored} session${stored!==1?'s':''}`;
+  document.getElementById('history-count').textContent=`${sessions.length} of ${MAX_SESSIONS} sessions`;
 
-  // Assessment
   const assessment=getAssessment();
   const assessmentContent=document.getElementById('assessment-content');
   if(assessment) {
@@ -881,20 +1355,12 @@ function renderHistory() {
     assessmentContent.innerHTML='<div class="assessment-empty">complete a session to generate your first assessment.</div>';
   }
 
-  // Category stats
-  if(sessions.length>0) {
-    const catTotals={}, catPass={};
-    const cats=['Structure & Flow','Clarity & Concision','Sentence Rhythm','Word Choice'];
-    cats.forEach(c=>{catTotals[c]=0;catPass[c]=0;});
-    sessions.forEach(s=>(s.results||[]).forEach(r=>{
-      if(r.verdict==='skip') return;
-      catTotals[r.category]=(catTotals[r.category]||0)+1;
-      catPass[r.category]=(catPass[r.category]||0)+(r.verdict==='pass'?1:0);
-    }));
+  // Category stats — now includes drill data
+  const combinedStats = getCombinedCatStats();
+  const hasAny = combinedStats.some(s => s.total > 0);
+  if (hasAny) {
     const statsEl=document.getElementById('cat-stats');
-    statsEl.innerHTML=cats.map(cat=>{
-      const total=catTotals[cat]||0;
-      const pass=catPass[cat]||0;
+    statsEl.innerHTML=combinedStats.map(({cat,total,pass})=>{
       const pct=total>0?Math.round((pass/total)*100):0;
       return `<div class="cat-stat">
         <div class="cat-stat-name">${cat}</div>
@@ -938,7 +1404,6 @@ function renderHistory() {
   }
 }
 
-
 // ---- EXPORT HISTORY ----
 function exportHistory() {
   const sessions = getSessions();
@@ -948,14 +1413,12 @@ function exportHistory() {
   const dateStr = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
   const lines = [];
 
-  // Header
   lines.push('# The Forge — Writing History');
   lines.push(`exported ${dateStr} · ${sessions.length} session${sessions.length!==1?'s':''} · streak ${streak}`);
   lines.push('');
   lines.push('─'.repeat(40));
   lines.push('');
 
-  // Assessment
   if (assessment) {
     const updatedDate = new Date(assessment.updatedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
     lines.push('## Writer Assessment');
@@ -979,10 +1442,8 @@ function exportHistory() {
     lines.push('');
   }
 
-  // Sessions
   lines.push('## Sessions');
   lines.push('');
-
   if (sessions.length === 0) {
     lines.push('No sessions yet.');
   } else {
@@ -1007,7 +1468,7 @@ function exportHistory() {
 
   lines.push('─'.repeat(40));
   lines.push('');
-  lines.push('*Vibe coded by Dan · The Forge v1.0.0*');
+  lines.push('*Vibe coded by Dan · The Forge v1.2.0*');
 
   const blob = new Blob([lines.join('\n')], {type: 'text/markdown'});
   const url = URL.createObjectURL(blob);
@@ -1052,33 +1513,13 @@ function initGithubTokenUI() {
 document.getElementById('github-token-save').addEventListener('click', async () => {
   const val = document.getElementById('github-token-input').value.trim();
   if (!val) return;
-  // quick verify
   const res = await fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${val}` } });
   if (!res.ok) { alert('Invalid GitHub token — check and try again.'); return; }
   localStorage.setItem('forge_github_token', val);
   document.getElementById('github-token-input').value = '';
-  // search for existing forge gist before creating a new one
-  try {
-    const gistsRes = await fetch('https://api.github.com/gists', { headers: { 'Authorization': `token ${val}` } });
-    if (gistsRes.ok) {
-      const gists = await gistsRes.json();
-      const existing = gists.find(g => g.files && g.files['forge-history.json']);
-      if (existing) {
-        localStorage.setItem('forge_gist_id', existing.id);
-      }
-    }
-  } catch(e) {}
   initGithubTokenUI();
-  // pull from gist if found, otherwise push
-  if (getGistId()) {
-    await syncFromGist();
-  } else {
-    await syncToGist();
-  }
+  await syncToGist();
   renderHistory();
-  initGithubTokenUI();
-  const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
-  setSyncStatus('synced', `synced at ${now}`);
 });
 
 document.getElementById('github-token-clear').addEventListener('click', () => {
@@ -1093,21 +1534,19 @@ async function syncToGist() {
   if (!token) return;
   const sessions = getSessions();
   const assessment = getAssessment();
-  const streak = JSON.parse(localStorage.getItem('forge_streak')||'{}');
-  const payload = JSON.stringify({ sessions, assessment, streak }, null, 2);
+  const drillHistory = getDrillHistory();
+  const payload = JSON.stringify({ sessions, assessment, drillHistory }, null, 2);
   const gistId = getGistId();
   setSyncStatus('syncing', 'syncing…');
   try {
     let res;
     if (gistId) {
-      // update existing gist
       res = await fetch(`https://api.github.com/gists/${gistId}`, {
         method: 'PATCH',
         headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ files: { 'forge-history.json': { content: payload } } })
       });
     } else {
-      // create new private gist
       res = await fetch('https://api.github.com/gists', {
         method: 'POST',
         headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
@@ -1143,7 +1582,8 @@ async function syncFromGist() {
     const raw = data.files['forge-history.json']?.content;
     if (!raw) { setSyncStatus('error', 'gist file not found'); return false; }
     const parsed = JSON.parse(raw);
-    // Merge: combine remote + local sessions, dedupe by id, keep most recent 20
+
+    // Merge sessions
     const localSessions = getSessions();
     const remoteSessions = parsed.sessions || [];
     const merged = [...localSessions, ...remoteSessions]
@@ -1151,25 +1591,23 @@ async function syncFromGist() {
       .sort((a,b)=>b.id-a.id)
       .slice(0, MAX_SESSIONS);
     saveSessions(merged);
-    // Use remote assessment if newer
+
+    // Merge drill history
+    const localDrill = getDrillHistory();
+    const remoteDrill = parsed.drillHistory || [];
+    const mergedDrill = [...localDrill, ...remoteDrill]
+      .filter((s,i,arr) => arr.findIndex(x=>x.id===s.id)===i)
+      .sort((a,b)=>b.id-a.id)
+      .slice(0, 50);
+    saveDrillHistory(mergedDrill);
+
+    // Assessment
     const localAssessment = getAssessment();
     const remoteAssessment = parsed.assessment;
     if (remoteAssessment && (!localAssessment || new Date(remoteAssessment.updatedAt) > new Date(localAssessment.updatedAt||0))) {
       saveAssessment(remoteAssessment);
     }
-    // Sync streak — keep whichever has the higher count for today/yesterday
-    const remoteStreak = parsed.streak;
-    if (remoteStreak) {
-      const localStreak = JSON.parse(localStorage.getItem('forge_streak')||'{}');
-      const today = new Date().toDateString();
-      const yesterday = new Date(Date.now()-86400000).toDateString();
-      const remoteValid = remoteStreak.lastDate===today||remoteStreak.lastDate===yesterday;
-      const localValid = localStreak.lastDate===today||localStreak.lastDate===yesterday;
-      if (remoteValid && (!localValid || (remoteStreak.count||0) > (localStreak.count||0))) {
-        localStorage.setItem('forge_streak', JSON.stringify(remoteStreak));
-        document.getElementById('streak-display').textContent = remoteStreak.count||0;
-      }
-    }
+
     const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
     setSyncStatus('synced', `synced at ${now}`);
     return true;
@@ -1179,25 +1617,14 @@ async function syncFromGist() {
   }
 }
 
-// On history screen open: pull from gist first
 const _origRenderHistory = renderHistory;
 async function renderHistoryWithSync() {
   if (getGithubToken() && getGistId()) {
-    const synced = await syncFromGist();
-    // push back after pull so streak and any local-only data is always current on gist
-    await syncToGist();
-    _origRenderHistory();
-    initGithubTokenUI();
-    if (synced) {
-      const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
-      setSyncStatus('synced', `synced at ${now}`);
-    }
-  } else {
-    _origRenderHistory();
-    initGithubTokenUI();
+    await syncFromGist();
   }
+  _origRenderHistory();
+  initGithubTokenUI();
 }
-
 
 function toggleSession(i) {
   const detail=document.getElementById(`detail-${i}`);
@@ -1207,7 +1634,6 @@ function toggleSession(i) {
 }
 </script>
 <script>
-
 // ---- ABOUT MODAL ----
 document.getElementById('about-btn').addEventListener('click',()=>{
   document.getElementById('about-modal').classList.add('open');
@@ -1221,7 +1647,7 @@ document.getElementById('about-modal').addEventListener('click',(e)=>{
 document.getElementById('changelog-link').addEventListener('click',(e)=>{
   e.preventDefault();
   document.getElementById('about-modal').classList.remove('open');
-  alert('v1.0.0 — Initial release.\n\n· AI-powered draft analysis\n· 5 focus areas: structure, clarity, rhythm, word choice\n· Exercise-based practice with evaluation\n· Session history (last 20 sessions)\n· Evolving writer assessment\n· PWA — installable on any device');
+  alert('v1.2.0 — Drill module.\n\n· Sentence gym: targeted single-sentence revision reps\n· Adaptive weighting: skews toward your weak categories\n· Combined stats: session + drill history in category bars\n· Drill history synced to GitHub Gist\n\nv1.1.0\n· GitHub Gist sync\n· Model example on partial/miss verdicts\n· Export history to markdown\n\nv1.0.0 — Initial release.');
 });
 
 if ('serviceWorker' in navigator) {
