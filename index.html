@@ -34,7 +34,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'IBM Plex Mono', monospace; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 13px; line-height: 1.7; }
 
-  /* HEADER */
   .header { border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; align-items: center; gap: 20px; }
   .header-title { font-family: 'Courier Prime', monospace; font-size: 15px; color: var(--accent); }
   .header-sep { color: var(--border-bright); }
@@ -42,37 +41,22 @@
   .header-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
   .header-streak { color: var(--text-dim); font-size: 11px; }
   .streak-val { color: var(--accent); }
-  .header-history-btn {
-    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.5px;
-    background: transparent; border: 1px solid var(--border); color: var(--text-dim);
-    padding: 5px 12px; cursor: pointer; transition: all 0.12s;
-  }
+  .header-history-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.5px; background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 5px 12px; cursor: pointer; transition: all 0.12s; }
   .header-history-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* LAYOUT */
   .app { max-width: 680px; margin: 0 auto; padding: 48px 32px 80px; }
   .screen { display: none; }
   .screen.active { display: block; }
-  .section-label {
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--text-dim); margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
-  }
+  .section-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* TABS */
   .tabs { display: flex; gap: 0; margin-bottom: 36px; border-bottom: 1px solid var(--border); }
-  .tab-btn {
-    font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
-    background: transparent; border: none; border-bottom: 2px solid transparent;
-    color: var(--text-dim); padding: 10px 20px 10px 0; cursor: pointer; transition: all 0.12s;
-    margin-bottom: -1px;
-  }
+  .tab-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-dim); padding: 10px 20px 10px 0; cursor: pointer; transition: all 0.12s; margin-bottom: -1px; }
   .tab-btn:hover { color: var(--text); }
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* INTRO */
   .intro-title { font-family: 'Courier Prime', monospace; font-size: 26px; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
   .intro-title em { font-style: italic; color: var(--accent); }
   .intro-sub { color: var(--text-dim); font-size: 12px; margin-bottom: 36px; line-height: 1.9; max-width: 480px; }
@@ -83,18 +67,13 @@
   #file-input { display: none; }
   .or-line { font-size: 11px; color: var(--text-dim); margin: 14px 0; display: flex; align-items: center; gap: 12px; }
   .or-line::before, .or-line::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  textarea, .response-area {
-    width: 100%; font-family: 'IBM Plex Mono', monospace; font-size: 13px;
-    line-height: 1.8; background: var(--surface); border: 1px solid var(--border);
-    color: var(--text); padding: 14px 16px; resize: vertical; outline: none; transition: border-color 0.15s;
-  }
+  textarea, .response-area { width: 100%; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.8; background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 14px 16px; resize: vertical; outline: none; transition: border-color 0.15s; }
   textarea:focus, .response-area:focus { border-color: var(--accent); }
   textarea::placeholder, .response-area::placeholder { color: var(--text-dim); font-style: italic; }
   #paste-input { min-height: 170px; }
   .response-area { min-height: 80px; }
   .char-count { font-size: 11px; color: var(--text-dim); margin-top: 5px; text-align: right; }
 
-  /* POINT SELECTOR */
   .point-selector { margin: 24px 0; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); }
   .point-selector-label { font-size: 11px; color: var(--text-dim); margin-bottom: 12px; }
   .point-options { display: flex; gap: 6px; }
@@ -102,7 +81,6 @@
   .point-opt:hover { border-color: var(--text-mid); color: var(--text); }
   .point-opt.selected { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
 
-  /* BUTTONS */
   .btn { font-family: 'IBM Plex Mono', monospace; font-size: 12px; padding: 9px 20px; border: 1px solid; cursor: pointer; transition: all 0.12s; display: inline-flex; align-items: center; gap: 8px; }
   .btn-primary { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
   .btn-primary:hover { background: #4a3e20; }
@@ -113,7 +91,6 @@
   .btn-green:hover { background: #223422; }
   .btn-green:disabled { background: transparent; border-color: var(--border); color: var(--text-dim); cursor: not-allowed; }
 
-  /* LOADING */
   .loading-screen { padding: 80px 0; display: flex; flex-direction: column; gap: 8px; }
   .loading-line { font-size: 12px; color: var(--text-dim); opacity: 0; animation: fadein 0.3s forwards; }
   .loading-line::before { content: '> '; color: var(--accent); }
@@ -121,7 +98,6 @@
   @keyframes fadein { to { opacity: 1; } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-  /* SESSION */
   .session-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
   .session-pos { font-size: 11px; color: var(--text-dim); }
   .session-pos span { color: var(--accent); }
@@ -154,7 +130,6 @@
   .eval-example-text { font-size: 12px; color: var(--text-mid); line-height: 1.9; font-style: italic; border-left: 2px solid var(--border-bright); padding-left: 12px; }
   .eval-next { margin-top: 14px; }
 
-  /* SUMMARY */
   .summary-top { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
   .summary-title { font-family: 'Courier Prime', monospace; font-size: 22px; font-weight: 400; margin-bottom: 6px; }
   .summary-score-line { font-size: 12px; color: var(--text-dim); }
@@ -170,12 +145,9 @@
   .patterns-body { font-size: 12px; color: var(--text-mid); line-height: 1.9; }
   .summary-actions { display: flex; gap: 10px; }
 
-  /* HISTORY SCREEN */
   .history-header { margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; justify-content: space-between; }
   .history-title { font-family: 'Courier Prime', monospace; font-size: 22px; font-weight: 400; }
   .history-count { font-size: 11px; color: var(--text-dim); }
-
-  /* ASSESSMENT BLOCK */
   .assessment-block { background: var(--surface); border: 1px solid var(--border); margin-bottom: 32px; }
   .assessment-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .assessment-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
@@ -192,7 +164,6 @@
   .pill-amber { border-color: var(--amber); color: var(--amber); }
   .assessment-empty { font-size: 12px; color: var(--text-dim); font-style: italic; padding: 18px 20px; }
 
-  /* HISTORY LIST */
   .history-sessions { display: flex; flex-direction: column; gap: 2px; margin-bottom: 28px; }
   .history-session { border: 1px solid var(--border); background: var(--surface); }
   .history-session-header { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: background 0.12s; }
@@ -201,7 +172,7 @@
   .history-session-score { font-size: 11px; color: var(--accent); min-width: 40px; }
   .history-session-summary { font-size: 11px; color: var(--text-dim); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .history-session-toggle { color: var(--text-dim); font-size: 10px; margin-left: auto; }
-  .history-session-detail { display: none; padding: 0 16px 14px; border-top: 1px solid var(--border); margin-top: 0; }
+  .history-session-detail { display: none; padding: 0 16px 14px; border-top: 1px solid var(--border); }
   .history-session-detail.open { display: block; }
   .history-detail-items { display: flex; flex-direction: column; gap: 2px; margin-top: 12px; }
   .history-detail-row { display: flex; gap: 10px; font-size: 11px; color: var(--text-dim); padding: 6px 0; border-bottom: 1px solid var(--border); }
@@ -212,7 +183,6 @@
   .history-empty { font-size: 12px; color: var(--text-dim); font-style: italic; padding: 32px 0; text-align: center; }
   .history-actions { display: flex; gap: 10px; }
 
-  /* CATEGORY STATS */
   .cat-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 32px; }
   .cat-stat { background: var(--surface); border: 1px solid var(--border); padding: 14px 16px; }
   .cat-stat-name { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
@@ -223,7 +193,6 @@
 
   .hidden { display: none !important; }
 
-  /* SYNC */
   .sync-status { font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; min-height: 18px; }
   .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border-bright); flex-shrink: 0; }
   .sync-dot.synced { background: var(--green); }
@@ -240,7 +209,6 @@
   .github-token-clear { font-size: 11px; color: var(--text-dim); background: none; border: none; cursor: pointer; font-family: 'IBM Plex Mono', monospace; text-decoration: underline; }
   .github-token-clear:hover { color: var(--red); }
 
-  /* ABOUT MODAL */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
   .modal { background: var(--surface); border: 1px solid var(--border-bright); width: 100%; max-width: 360px; margin: 20px; position: relative; animation: slideup 0.2s ease; }
@@ -255,18 +223,13 @@
   .modal-links { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; }
   .modal-link { font-size: 11px; color: var(--text-dim); text-decoration: none; font-family: 'IBM Plex Mono', monospace; transition: color 0.12s; }
   .modal-link:hover { color: var(--accent); }
-  .modal-link-sep { color: var(--border-bright); font-size: 11px; }
   .modal-anthropic { font-size: 10px; color: var(--text-dim); opacity: 0.6; letter-spacing: 0.5px; }
 
-  /* FOOTER */
   .app-footer { text-align: center; padding: 32px 0 48px; }
   .app-footer-text { font-size: 10px; color: var(--text-dim); opacity: 0.4; letter-spacing: 0.5px; }
-
-  /* ABOUT BTN */
   .header-about-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: transparent; border: none; color: var(--text-dim); padding: 5px 4px; cursor: pointer; transition: color 0.12s; opacity: 0.5; }
   .header-about-btn:hover { color: var(--accent); opacity: 1; }
 
-  /* API KEY SCREEN */
   .apikey-wrap { padding-top: 60px; max-width: 480px; }
   .apikey-title { font-family: 'Courier Prime', monospace; font-size: 22px; color: var(--text); margin-bottom: 10px; }
   .apikey-sub { font-size: 12px; color: var(--text-dim); line-height: 1.9; margin-bottom: 32px; }
@@ -287,18 +250,14 @@
   .header-key-btn { font-family: 'IBM Plex Mono', monospace; font-size: 11px; background: transparent; border: 1px solid var(--border); color: var(--text-dim); padding: 5px 12px; cursor: pointer; transition: all 0.12s; }
   .header-key-btn:hover { border-color: var(--text-mid); color: var(--text); }
 
-  /* ---- DRILL MODULE ---- */
+  /* DRILL */
   .drill-intro-title { font-family: 'Courier Prime', monospace; font-size: 26px; font-weight: 400; color: var(--text); line-height: 1.3; margin-bottom: 10px; }
   .drill-intro-title em { font-style: italic; color: var(--accent); }
   .drill-intro-sub { color: var(--text-dim); font-size: 12px; margin-bottom: 32px; line-height: 1.9; max-width: 480px; }
-
   .drill-meta-row { display: flex; gap: 2px; margin-bottom: 28px; }
   .drill-meta-cell { flex: 1; background: var(--surface); border: 1px solid var(--border); padding: 14px 16px; }
   .drill-meta-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
   .drill-meta-val { font-size: 18px; font-family: 'Courier Prime', monospace; color: var(--accent); }
-  .drill-meta-sub { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
-
-  /* Drill sentence card */
   .drill-card { background: var(--surface); border: 1px solid var(--border); padding: 20px 22px; margin-bottom: 16px; animation: slideup 0.22s ease; }
   .drill-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
   .drill-card-category { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
@@ -307,8 +266,6 @@
   .drill-original { font-size: 13px; color: var(--text-mid); font-style: italic; line-height: 1.8; margin-bottom: 16px; padding: 10px 14px; border-left: 2px solid var(--border-bright); background: var(--bg); }
   .drill-issue { font-size: 12px; color: var(--text-dim); line-height: 1.8; margin-bottom: 14px; }
   .drill-response-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
-
-  /* Drill eval inside card */
   .drill-eval { margin-top: 12px; padding: 14px 16px; border: 1px solid; animation: slideup 0.18s ease; }
   .drill-eval.pass { border-color: var(--green); background: var(--green-dim); }
   .drill-eval.partial { border-color: var(--amber); background: var(--accent-dim); }
@@ -319,8 +276,6 @@
   .drill-eval-example-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
   .drill-eval-example-text { font-size: 12px; color: var(--text-mid); line-height: 1.9; font-style: italic; border-left: 2px solid var(--border-bright); padding-left: 12px; }
   .drill-next-btn-wrap { margin-top: 12px; }
-
-  /* Drill summary */
   .drill-summary-top { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .drill-summary-title { font-family: 'Courier Prime', monospace; font-size: 22px; font-weight: 400; margin-bottom: 6px; }
   .drill-summary-score-line { font-size: 12px; color: var(--text-dim); }
@@ -332,8 +287,6 @@
   .drill-summary-cat { color: var(--text-dim); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
   .drill-summary-note { color: var(--text-dim); margin-top: 4px; line-height: 1.7; }
   .drill-summary-actions { display: flex; gap: 10px; }
-
-  /* Drill weak-category callout */
   .drill-weak-block { background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--red); padding: 16px 20px; margin-bottom: 24px; }
   .drill-weak-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
   .drill-weak-body { font-size: 12px; color: var(--text-mid); line-height: 1.9; }
@@ -415,11 +368,9 @@
     <div class="tab-panel" id="tab-drill">
       <div class="drill-intro-title">The sentence gym.<br><em>Rep by rep.</em></div>
       <p class="drill-intro-sub">Targeted reps on individual writing habits — no draft required. Each sentence has one problem. You fix it. The gym adapts to your weak spots over time.</p>
-
-      <!-- Stats row -->
-      <div class="drill-meta-row" id="drill-meta-row">
+      <div class="drill-meta-row">
         <div class="drill-meta-cell">
-          <div class="drill-meta-label">total reps</div>
+          <div class="drill-meta-label">drill reps</div>
           <div class="drill-meta-val" id="drill-total-reps">0</div>
         </div>
         <div class="drill-meta-cell">
@@ -431,7 +382,6 @@
           <div class="drill-meta-val" id="drill-weakest" style="font-size:11px;line-height:1.4;padding-top:4px;">—</div>
         </div>
       </div>
-
       <div class="point-selector">
         <div class="point-selector-label">// how many sentences this drill?</div>
         <div class="point-options">
@@ -532,9 +482,7 @@
       <div class="history-title">Progress log</div>
       <div class="history-count" id="history-count"></div>
     </div>
-
-    <!-- EVOLVING ASSESSMENT -->
-    <div class="assessment-block" id="assessment-block">
+    <div class="assessment-block">
       <div class="assessment-header">
         <span class="assessment-label">// writer assessment</span>
         <span class="assessment-updated" id="assessment-updated"></span>
@@ -543,15 +491,11 @@
         <div class="assessment-empty">complete a session to generate your first assessment.</div>
       </div>
     </div>
-
-    <!-- SYNC STATUS -->
     <div class="sync-status" id="sync-status">
       <div class="sync-dot" id="sync-dot"></div>
       <span id="sync-label">not synced</span>
     </div>
-
-    <!-- GITHUB TOKEN -->
-    <div class="github-token-block" id="github-token-block">
+    <div class="github-token-block">
       <div class="github-token-label">// github sync</div>
       <div id="github-token-set-row">
         <div class="github-token-row">
@@ -566,19 +510,14 @@
         </div>
       </div>
     </div>
-
-    <!-- CATEGORY STATS -->
     <div id="cat-stats-section" class="hidden">
       <div class="section-label">by category</div>
       <div class="cat-stats" id="cat-stats"></div>
     </div>
-
-    <!-- SESSION LIST -->
     <div class="section-label" style="margin-top:8px;">sessions</div>
     <div class="history-sessions" id="history-sessions">
       <div class="history-empty">no sessions yet.</div>
     </div>
-
     <div class="history-actions">
       <button class="btn btn-primary" id="history-new-btn">> new session</button>
       <button class="btn btn-ghost" id="history-export-btn">> export .md</button>
@@ -617,1044 +556,316 @@
 <script>
 // ---- STATE ----
 let feedbackPoints=[], currentIndex=0, sessionResults=[], userText='', pointCount=5, isEvaluating=false;
-const MAX_SESSIONS = 20;
-
-// ---- DRILL STATE ----
+const MAX_SESSIONS=20;
 let drillSentences=[], drillIndex=0, drillResults=[], drillCount=10, isDrillEvaluating=false;
 
-// ---- STORAGE HELPERS ----
-function getSessions() {
-  try { return JSON.parse(localStorage.getItem('forge_sessions')||'[]'); } catch { return []; }
+// ---- STORAGE ----
+function getSessions(){try{return JSON.parse(localStorage.getItem('forge_sessions')||'[]');}catch{return[];}}
+function saveSessions(s){localStorage.setItem('forge_sessions',JSON.stringify(s));}
+function saveSession(session){let s=getSessions();s.unshift(session);if(s.length>MAX_SESSIONS)s=s.slice(0,MAX_SESSIONS);saveSessions(s);}
+function getAssessment(){try{return JSON.parse(localStorage.getItem('forge_assessment')||'null');}catch{return null;}}
+function saveAssessment(a){localStorage.setItem('forge_assessment',JSON.stringify(a));}
+function getStreak(){try{const d=JSON.parse(localStorage.getItem('forge_streak')||'{}');const today=new Date().toDateString(),yesterday=new Date(Date.now()-86400000).toDateString();return(d.lastDate===today||d.lastDate===yesterday)?d.count||0:0;}catch{return 0;}}
+function incrementStreak(){try{const d=JSON.parse(localStorage.getItem('forge_streak')||'{}');const today=new Date().toDateString(),yesterday=new Date(Date.now()-86400000).toDateString();const count=d.lastDate===today?d.count||1:d.lastDate===yesterday?(d.count||0)+1:1;localStorage.setItem('forge_streak',JSON.stringify({count,lastDate:today}));return count;}catch{return 1;}}
+function getDrillHistory(){try{return JSON.parse(localStorage.getItem('forge_drill_history')||'[]');}catch{return[];}}
+function saveDrillHistory(h){localStorage.setItem('forge_drill_history',JSON.stringify(h));}
+function saveDrillSession(session){let h=getDrillHistory();h.unshift(session);if(h.length>50)h=h.slice(0,50);saveDrillHistory(h);}
+
+// Combined cat stats for adaptive weighting + history bars
+function getCombinedCatStats(){
+  const cats=['Structure & Flow','Clarity & Concision','Sentence Rhythm','Word Choice'];
+  const totals={},passes={};cats.forEach(c=>{totals[c]=0;passes[c]=0;});
+  getSessions().forEach(s=>{(s.results||[]).forEach(r=>{if(r.verdict==='skip')return;totals[r.category]=(totals[r.category]||0)+1;passes[r.category]=(passes[r.category]||0)+(r.verdict==='pass'?1:0);});});
+  getDrillHistory().forEach(d=>{(d.results||[]).forEach(r=>{if(r.verdict==='skip')return;totals[r.category]=(totals[r.category]||0)+1;passes[r.category]=(passes[r.category]||0)+(r.verdict==='pass'?1:0);});});
+  return cats.map(cat=>({cat,total:totals[cat]||0,pass:passes[cat]||0,rate:totals[cat]>0?passes[cat]/totals[cat]:null}));
 }
-function saveSessions(s) { localStorage.setItem('forge_sessions', JSON.stringify(s)); }
-function saveSession(session) {
-  let sessions = getSessions();
-  sessions.unshift(session);
-  if (sessions.length > MAX_SESSIONS) sessions = sessions.slice(0, MAX_SESSIONS);
-  saveSessions(sessions);
+function getDrillCategoryWeights(){
+  const stats=getCombinedCatStats();const hasData=stats.some(s=>s.total>0);
+  if(!hasData)return stats.map(s=>({cat:s.cat,weight:1}));
+  const w=stats.map(s=>({cat:s.cat,weight:s.total>0?Math.max(0.1,1-s.rate):0.5}));
+  return w.map(x=>({cat:x.cat,weight:x.weight*x.weight}));
 }
-function getAssessment() {
-  try { return JSON.parse(localStorage.getItem('forge_assessment')||'null'); } catch { return null; }
-}
-function saveAssessment(a) { localStorage.setItem('forge_assessment', JSON.stringify(a)); }
-
-function getStreak() {
-  try {
-    const d=JSON.parse(localStorage.getItem('forge_streak')||'{}');
-    const today=new Date().toDateString(), yesterday=new Date(Date.now()-86400000).toDateString();
-    return (d.lastDate===today||d.lastDate===yesterday)?d.count||0:0;
-  } catch { return 0; }
-}
-function incrementStreak() {
-  try {
-    const d=JSON.parse(localStorage.getItem('forge_streak')||'{}');
-    const today=new Date().toDateString(), yesterday=new Date(Date.now()-86400000).toDateString();
-    const count=d.lastDate===today?d.count||1:d.lastDate===yesterday?(d.count||0)+1:1;
-    localStorage.setItem('forge_streak', JSON.stringify({count,lastDate:today}));
-    return count;
-  } catch { return 1; }
-}
-
-// ---- DRILL STORAGE ----
-function getDrillHistory() {
-  try { return JSON.parse(localStorage.getItem('forge_drill_history')||'[]'); } catch { return []; }
-}
-function saveDrillHistory(h) { localStorage.setItem('forge_drill_history', JSON.stringify(h)); }
-function saveDrillSession(session) {
-  let h = getDrillHistory();
-  h.unshift(session);
-  if (h.length > 50) h = h.slice(0, 50);
-  saveDrillHistory(h);
-}
-
-// Compute combined category weakness from sessions + drill history
-function getCombinedCatStats() {
-  const cats = ['Structure & Flow','Clarity & Concision','Sentence Rhythm','Word Choice'];
-  const totals = {}, passes = {};
-  cats.forEach(c => { totals[c]=0; passes[c]=0; });
-
-  // Session history
-  getSessions().forEach(s => {
-    (s.results||[]).forEach(r => {
-      if (r.verdict==='skip') return;
-      totals[r.category]=(totals[r.category]||0)+1;
-      passes[r.category]=(passes[r.category]||0)+(r.verdict==='pass'?1:0);
-    });
-  });
-
-  // Drill history
-  getDrillHistory().forEach(d => {
-    (d.results||[]).forEach(r => {
-      if (r.verdict==='skip') return;
-      totals[r.category]=(totals[r.category]||0)+1;
-      passes[r.category]=(passes[r.category]||0)+(r.verdict==='pass'?1:0);
-    });
-  });
-
-  return cats.map(cat => ({
-    cat,
-    total: totals[cat]||0,
-    pass: passes[cat]||0,
-    rate: totals[cat]>0 ? passes[cat]/totals[cat] : null
-  }));
-}
-
-// Returns weighted category distribution for drill generation
-// Weak categories get higher weight
-function getDrillCategoryWeights() {
-  const stats = getCombinedCatStats();
-  const cats = ['Structure & Flow','Clarity & Concision','Sentence Rhythm','Word Choice'];
-
-  // If no data, uniform
-  const hasData = stats.some(s => s.total > 0);
-  if (!hasData) return cats.map(c => ({ cat: c, weight: 1 }));
-
-  // Score = 1 - pass_rate (miss rate). Unknown = 0.5 (neutral)
-  const weights = stats.map(s => ({
-    cat: s.cat,
-    weight: s.total > 0 ? Math.max(0.1, 1 - s.rate) : 0.5
-  }));
-
-  // Boost low performers: square the weight to amplify spread
-  const boosted = weights.map(w => ({ cat: w.cat, weight: w.weight * w.weight }));
-  return boosted;
-}
-
-function getWeakestCategory() {
-  const stats = getCombinedCatStats();
-  const withData = stats.filter(s => s.total > 0);
-  if (withData.length === 0) return null;
-  withData.sort((a,b) => a.rate - b.rate);
-  return withData[0];
-}
+function getWeakestCategory(){const stats=getCombinedCatStats();const wd=stats.filter(s=>s.total>0);if(!wd.length)return null;wd.sort((a,b)=>a.rate-b.rate);return wd[0];}
 
 // ---- API KEY ----
-function getStoredKey() { return localStorage.getItem('forge_apikey')||''; }
-function maskKey(k) { return k.slice(0,10)+'…'+k.slice(-4); }
-
-function initApiKey() {
-  const key=getStoredKey();
-  if(!key){ showScreen('screen-apikey'); }
-  const input=document.getElementById('apikey-input');
-  const toggle=document.getElementById('apikey-toggle');
-  const saveBtn=document.getElementById('apikey-save-btn');
-  const errorEl=document.getElementById('apikey-error');
-  const storedWrap=document.getElementById('apikey-stored-wrap');
-  const inputWrapOuter=document.getElementById('apikey-input-wrap-outer');
-  const maskedEl=document.getElementById('apikey-masked');
-
-  function refreshKeyUI() {
-    const k=getStoredKey();
-    if(k){ storedWrap.classList.remove('hidden'); inputWrapOuter.classList.add('hidden'); maskedEl.textContent=maskKey(k); }
-    else { storedWrap.classList.add('hidden'); inputWrapOuter.classList.remove('hidden'); }
-  }
+function getStoredKey(){return localStorage.getItem('forge_apikey')||'';}
+function maskKey(k){return k.slice(0,10)+'…'+k.slice(-4);}
+function initApiKey(){
+  const key=getStoredKey();if(!key){showScreen('screen-apikey');}
+  const input=document.getElementById('apikey-input'),toggle=document.getElementById('apikey-toggle'),saveBtn=document.getElementById('apikey-save-btn'),errorEl=document.getElementById('apikey-error'),storedWrap=document.getElementById('apikey-stored-wrap'),inputWrapOuter=document.getElementById('apikey-input-wrap-outer'),maskedEl=document.getElementById('apikey-masked');
+  function refreshKeyUI(){const k=getStoredKey();if(k){storedWrap.classList.remove('hidden');inputWrapOuter.classList.add('hidden');maskedEl.textContent=maskKey(k);}else{storedWrap.classList.add('hidden');inputWrapOuter.classList.remove('hidden');}}
   refreshKeyUI();
-
-  toggle.addEventListener('click',()=>{
-    const show=input.type==='password';
-    input.type=show?'text':'password';
-    toggle.textContent=show?'hide':'show';
-  });
+  toggle.addEventListener('click',()=>{const show=input.type==='password';input.type=show?'text':'password';toggle.textContent=show?'hide':'show';});
   saveBtn.addEventListener('click',async()=>{
-    const val=input.value.trim();
-    if(!val||!val.startsWith('sk-ant-')){ errorEl.textContent='// key should start with sk-ant-'; return; }
-    errorEl.textContent='';
-    saveBtn.disabled=true; saveBtn.textContent='> verifying…';
-    try {
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
-        method:"POST",
-        headers:{"Content-Type":"application/json","x-api-key":val,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-        body:JSON.stringify({model:"claude-haiku-4-5-20251001",max_tokens:10,messages:[{role:"user",content:"hi"}]})
-      });
-      if(res.status===401){ errorEl.textContent='// invalid key — check and try again'; saveBtn.disabled=false; saveBtn.textContent='> save key'; return; }
-      localStorage.setItem('forge_apikey',val);
-      input.value='';
-      refreshKeyUI();
-      showScreen('screen-intro');
-    } catch(e){ errorEl.textContent='// could not verify — check your connection'; }
-    saveBtn.disabled=false; saveBtn.textContent='> save key';
+    const val=input.value.trim();if(!val||!val.startsWith('sk-ant-')){errorEl.textContent='// key should start with sk-ant-';return;}
+    errorEl.textContent='';saveBtn.disabled=true;saveBtn.textContent='> verifying…';
+    try{const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":val,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-haiku-4-5-20251001",max_tokens:10,messages:[{role:"user",content:"hi"}]})});
+      if(res.status===401){errorEl.textContent='// invalid key — check and try again';saveBtn.disabled=false;saveBtn.textContent='> save key';return;}
+      localStorage.setItem('forge_apikey',val);input.value='';refreshKeyUI();showScreen('screen-intro');}
+    catch(e){errorEl.textContent='// could not verify — check your connection';}
+    saveBtn.disabled=false;saveBtn.textContent='> save key';
   });
-  document.getElementById('apikey-clear-btn').addEventListener('click',()=>{
-    if(!confirm('Remove your API key from this device?')) return;
-    localStorage.removeItem('forge_apikey'); refreshKeyUI();
-  });
-  document.getElementById('header-key-btn').addEventListener('click',()=>{ refreshKeyUI(); showScreen('screen-apikey'); });
+  document.getElementById('apikey-clear-btn').addEventListener('click',()=>{if(!confirm('Remove your API key from this device?'))return;localStorage.removeItem('forge_apikey');refreshKeyUI();});
+  document.getElementById('header-key-btn').addEventListener('click',()=>{refreshKeyUI();showScreen('screen-apikey');});
 }
 initApiKey();
 document.getElementById('streak-display').textContent=getStreak();
 
-// ---- SCREEN ----
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
 // ---- TABS ----
-document.getElementById('tab-session-btn').addEventListener('click', () => {
-  document.getElementById('tab-session-btn').classList.add('active');
-  document.getElementById('tab-drill-btn').classList.remove('active');
-  document.getElementById('tab-session').classList.add('active');
-  document.getElementById('tab-drill').classList.remove('active');
+document.getElementById('tab-session-btn').addEventListener('click',()=>{
+  document.getElementById('tab-session-btn').classList.add('active');document.getElementById('tab-drill-btn').classList.remove('active');
+  document.getElementById('tab-session').classList.add('active');document.getElementById('tab-drill').classList.remove('active');
 });
-document.getElementById('tab-drill-btn').addEventListener('click', () => {
-  document.getElementById('tab-drill-btn').classList.add('active');
-  document.getElementById('tab-session-btn').classList.remove('active');
-  document.getElementById('tab-drill').classList.add('active');
-  document.getElementById('tab-session').classList.remove('active');
+document.getElementById('tab-drill-btn').addEventListener('click',()=>{
+  document.getElementById('tab-drill-btn').classList.add('active');document.getElementById('tab-session-btn').classList.remove('active');
+  document.getElementById('tab-drill').classList.add('active');document.getElementById('tab-session').classList.remove('active');
   refreshDrillStats();
 });
 
-function refreshDrillStats() {
-  const history = getDrillHistory();
-  let totalReps = 0, totalPass = 0;
-  history.forEach(d => {
-    (d.results||[]).forEach(r => {
-      if (r.verdict==='skip') return;
-      totalReps++;
-      if (r.verdict==='pass') totalPass++;
-    });
-  });
-  // Also count session reps
-  getSessions().forEach(s => {
-    (s.results||[]).forEach(r => {
-      if (r.verdict==='skip') return;
-      totalReps++;
-      if (r.verdict==='pass') totalPass++;
-    });
-  });
-  document.getElementById('drill-total-reps').textContent = totalReps;
-  document.getElementById('drill-pass-rate').textContent = totalReps > 0 ? Math.round((totalPass/totalReps)*100)+'%' : '—';
-  const weakest = getWeakestCategory();
-  const weakEl = document.getElementById('drill-weakest');
-  if (weakest) {
-    weakEl.textContent = weakest.cat;
-    weakEl.style.fontSize = '11px';
-  } else {
-    weakEl.textContent = '—';
-    weakEl.style.fontSize = '18px';
-  }
+// Drill stats: only counts drill history reps (not session reps)
+function refreshDrillStats(){
+  const history=getDrillHistory();let totalReps=0,totalPass=0;
+  history.forEach(d=>{(d.results||[]).forEach(r=>{if(r.verdict==='skip')return;totalReps++;if(r.verdict==='pass')totalPass++;});});
+  document.getElementById('drill-total-reps').textContent=totalReps;
+  document.getElementById('drill-pass-rate').textContent=totalReps>0?Math.round((totalPass/totalReps)*100)+'%':'—';
+  const weakest=getWeakestCategory();const weakEl=document.getElementById('drill-weakest');
+  if(weakest){weakEl.textContent=weakest.cat;weakEl.style.fontSize='11px';}else{weakEl.textContent='—';weakEl.style.fontSize='18px';}
 }
 
-// ---- DRILL COUNT ----
-document.querySelectorAll('.drill-count-opt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.drill-count-opt').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    drillCount = parseInt(btn.dataset.val);
-  });
-});
+document.querySelectorAll('.drill-count-opt').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.drill-count-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');drillCount=parseInt(btn.dataset.val);});});
 
 // ---- INTRO ----
-const pasteInput=document.getElementById('paste-input');
-const startBtn=document.getElementById('start-btn');
-const fileInput=document.getElementById('file-input');
-
-pasteInput.addEventListener('input',()=>{
-  document.getElementById('char-count').textContent=pasteInput.value.length;
-  userText=pasteInput.value; startBtn.disabled=userText.trim().length<80;
-});
+const pasteInput=document.getElementById('paste-input'),startBtn=document.getElementById('start-btn'),fileInput=document.getElementById('file-input');
+pasteInput.addEventListener('input',()=>{document.getElementById('char-count').textContent=pasteInput.value.length;userText=pasteInput.value;startBtn.disabled=userText.trim().length<80;});
 document.getElementById('browse-link').addEventListener('click',()=>fileInput.click());
 document.getElementById('drop-zone').addEventListener('click',()=>fileInput.click());
 document.getElementById('drop-zone').addEventListener('dragover',e=>{e.preventDefault();e.currentTarget.classList.add('dragover');});
 document.getElementById('drop-zone').addEventListener('dragleave',e=>e.currentTarget.classList.remove('dragover'));
 document.getElementById('drop-zone').addEventListener('drop',e=>{e.preventDefault();e.currentTarget.classList.remove('dragover');if(e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0]);});
 fileInput.addEventListener('change',()=>{if(fileInput.files[0])loadFile(fileInput.files[0]);});
-
-function loadFile(file) {
-  const r=new FileReader();
-  r.onload=e=>{userText=e.target.result;pasteInput.value=userText;document.getElementById('char-count').textContent=userText.length;startBtn.disabled=userText.trim().length<80;};
-  r.readAsText(file);
-}
-document.querySelectorAll('.point-opt').forEach(btn=>{
-  btn.addEventListener('click',()=>{document.querySelectorAll('.point-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');pointCount=parseInt(btn.dataset.val);});
-});
+function loadFile(file){const r=new FileReader();r.onload=e=>{userText=e.target.result;pasteInput.value=userText;document.getElementById('char-count').textContent=userText.length;startBtn.disabled=userText.trim().length<80;};r.readAsText(file);}
+document.querySelectorAll('.point-opt').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.point-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');pointCount=parseInt(btn.dataset.val);});});
 startBtn.addEventListener('click',startSession);
 
 // ---- NAV ----
 document.getElementById('history-nav-btn').addEventListener('click',async()=>{showScreen('screen-history');await renderHistoryWithSync();});
 document.getElementById('summary-history-btn').addEventListener('click',async()=>{showScreen('screen-history');await renderHistoryWithSync();});
-document.getElementById('history-new-btn').addEventListener('click',()=>{ resetToIntro('session'); });
-document.getElementById('new-session-btn').addEventListener('click',()=>{ resetToIntro('session'); });
-document.getElementById('history-clear-btn').addEventListener('click',()=>{
-  if(!confirm('Clear all session history and assessment? This cannot be undone.')) return;
-  localStorage.removeItem('forge_sessions'); localStorage.removeItem('forge_assessment');
-  renderHistory();
-});
-document.getElementById('drill-again-btn').addEventListener('click', () => { resetToIntro('drill'); });
-document.getElementById('drill-session-btn').addEventListener('click', () => { resetToIntro('session'); });
-
-function resetToIntro(tab) {
-  userText=''; pasteInput.value=''; startBtn.disabled=true;
-  document.getElementById('char-count').textContent='0';
-  showScreen('screen-intro');
-  if (tab === 'drill') {
-    document.getElementById('tab-drill-btn').click();
-    refreshDrillStats();
-  } else {
-    document.getElementById('tab-session-btn').click();
-  }
-}
+document.getElementById('history-new-btn').addEventListener('click',()=>resetToIntro('session'));
+document.getElementById('new-session-btn').addEventListener('click',()=>resetToIntro('session'));
+document.getElementById('history-clear-btn').addEventListener('click',()=>{if(!confirm('Clear all session history and assessment? This cannot be undone.'))return;localStorage.removeItem('forge_sessions');localStorage.removeItem('forge_assessment');renderHistory();});
+document.getElementById('drill-again-btn').addEventListener('click',()=>resetToIntro('drill'));
+document.getElementById('drill-session-btn').addEventListener('click',()=>resetToIntro('session'));
+function resetToIntro(tab){userText='';pasteInput.value='';startBtn.disabled=true;document.getElementById('char-count').textContent='0';showScreen('screen-intro');if(tab==='drill'){document.getElementById('tab-drill-btn').click();}else{document.getElementById('tab-session-btn').click();}}
 
 // ---- API ----
-function getApiKey() { return localStorage.getItem('forge_apikey')||''; }
-
-async function callClaude(system, user) {
-  const key=getApiKey();
-  if(!key){showScreen('screen-apikey');throw new Error('No API key');}
-  const res=await fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",
-    headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-    body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system,messages:[{role:"user",content:user}]})
-  });
+function getApiKey(){return localStorage.getItem('forge_apikey')||'';}
+async function callClaude(system,user){
+  const key=getApiKey();if(!key){showScreen('screen-apikey');throw new Error('No API key');}
+  const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system,messages:[{role:"user",content:user}]})});
   if(res.status===401){localStorage.removeItem('forge_apikey');showScreen('screen-apikey');throw new Error('Invalid API key');}
-  const data=await res.json(); return data.content[0].text;
+  const data=await res.json();return data.content[0].text;
 }
-
-function animateLoading(lines) {
+function animateLoading(lines){
   const c=document.getElementById('loading-lines');c.innerHTML='';
   lines.forEach((t,i)=>{const el=document.createElement('div');el.className='loading-line';el.style.animationDelay=`${i*0.35}s`;el.textContent=t;c.appendChild(el);});
   const cur=document.createElement('div');cur.className='loading-line';cur.style.animationDelay=`${lines.length*0.35}s`;cur.innerHTML='<span class="loading-cursor"></span>';c.appendChild(cur);
 }
 
-// ---- START SESSION ----
-async function startSession() {
+// ---- SESSION ----
+async function startSession(){
   showScreen('screen-loading');
   animateLoading([`reading draft…`,`identifying ${pointCount} improvement points…`,`checking structure and flow…`,`preparing session…`]);
-  const system=`You are a writing coach for a nonfiction writer working in slice-of-life stories, articles, and essays. Analyze their draft and identify exactly ${pointCount} specific, actionable improvement points — without homogenizing their voice.
-
-Focus on: Structure & Flow, Clarity & Concision, Sentence Rhythm, Word Choice.
-
-For each point return a JSON object with:
-- category: one of "Structure & Flow", "Clarity & Concision", "Sentence Rhythm", "Word Choice"
-- principle: short punchy title (e.g. "Cut the throat-clearing")
-- explanation: 2-3 sentences explaining the issue to the writer directly
-- excerpt: verbatim sentence or phrase from the draft (10-40 words)
-- prompt: specific exercise asking them to write a sentence or short passage demonstrating the principle
-
-Return ONLY a valid JSON array of exactly ${pointCount} objects. No preamble, no markdown fences.`;
-  try {
-    const raw=await callClaude(system,`Writer's draft:\n\n${userText.slice(0,3000)}`);
-    feedbackPoints=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    currentIndex=0;sessionResults=[];buildDots();showPoint();
-  } catch(e){alert('Analysis failed. Please try again.');showScreen('screen-intro');}
+  const system=`You are a writing coach for a nonfiction writer working in slice-of-life stories, articles, and essays. Analyze their draft and identify exactly ${pointCount} specific, actionable improvement points — without homogenizing their voice.\n\nFocus on: Structure & Flow, Clarity & Concision, Sentence Rhythm, Word Choice.\n\nFor each point return a JSON object with:\n- category: one of "Structure & Flow", "Clarity & Concision", "Sentence Rhythm", "Word Choice"\n- principle: short punchy title\n- explanation: 2-3 sentences explaining the issue to the writer directly\n- excerpt: verbatim sentence or phrase from the draft (10-40 words)\n- prompt: specific exercise asking them to write a sentence or short passage demonstrating the principle\n\nReturn ONLY a valid JSON array of exactly ${pointCount} objects. No preamble, no markdown fences.`;
+  try{const raw=await callClaude(system,`Writer's draft:\n\n${userText.slice(0,3000)}`);feedbackPoints=JSON.parse(raw.replace(/```json|```/g,'').trim());currentIndex=0;sessionResults=[];buildDots();showPoint();}
+  catch(e){alert('Analysis failed. Please try again.');showScreen('screen-intro');}
 }
-
-function buildDots() {
-  const c=document.getElementById('progress-dots');c.innerHTML='';
-  feedbackPoints.forEach((_,i)=>{const d=document.createElement('div');d.className='progress-dot'+(i===0?' active':'');d.id=`dot-${i}`;c.appendChild(d);});
-  document.getElementById('pos-total').textContent=feedbackPoints.length;
+function buildDots(){const c=document.getElementById('progress-dots');c.innerHTML='';feedbackPoints.forEach((_,i)=>{const d=document.createElement('div');d.className='progress-dot'+(i===0?' active':'');d.id=`dot-${i}`;c.appendChild(d);});document.getElementById('pos-total').textContent=feedbackPoints.length;}
+function updateDots(){feedbackPoints.forEach((_,i)=>{const d=document.getElementById(`dot-${i}`);d.className='progress-dot'+(i<currentIndex?' done':i===currentIndex?' active':'');});}
+function showPoint(){
+  showScreen('screen-session');const p=feedbackPoints[currentIndex];
+  document.getElementById('pos-current').textContent=currentIndex+1;updateDots();
+  document.getElementById('fb-category').textContent=p.category;document.getElementById('fb-principle').textContent=p.principle;
+  document.getElementById('fb-explanation').textContent=p.explanation;document.getElementById('fb-excerpt').textContent=p.excerpt;
+  document.getElementById('fb-prompt').textContent=p.prompt;document.getElementById('user-response').value='';
+  document.getElementById('eval-block').classList.add('hidden');document.getElementById('submit-btn').disabled=false;document.getElementById('submit-btn').textContent='> check';
+  isEvaluating=false;const fb=document.getElementById('fb-block');fb.style.animation='none';fb.offsetHeight;fb.style.animation='';
 }
-function updateDots() {
-  feedbackPoints.forEach((_,i)=>{const d=document.getElementById(`dot-${i}`);d.className='progress-dot'+(i<currentIndex?' done':i===currentIndex?' active':'');});
-}
-
-function showPoint() {
-  showScreen('screen-session');
-  const p=feedbackPoints[currentIndex];
-  document.getElementById('pos-current').textContent=currentIndex+1;
-  updateDots();
-  document.getElementById('fb-category').textContent=p.category;
-  document.getElementById('fb-principle').textContent=p.principle;
-  document.getElementById('fb-explanation').textContent=p.explanation;
-  document.getElementById('fb-excerpt').textContent=p.excerpt;
-  document.getElementById('fb-prompt').textContent=p.prompt;
-  document.getElementById('user-response').value='';
-  document.getElementById('eval-block').classList.add('hidden');
-  document.getElementById('submit-btn').disabled=false;
-  document.getElementById('submit-btn').textContent='> check';
-  isEvaluating=false;
-  const fb=document.getElementById('fb-block');fb.style.animation='none';fb.offsetHeight;fb.style.animation='';
-}
-
-// ---- SUBMIT SESSION ----
 document.getElementById('submit-btn').addEventListener('click',async()=>{
-  const response=document.getElementById('user-response').value.trim();
-  if(!response||response.length<10) return;
-  if(isEvaluating) return;
-  isEvaluating=true;
-  document.getElementById('submit-btn').disabled=true;
-  document.getElementById('submit-btn').textContent='checking…';
+  const response=document.getElementById('user-response').value.trim();if(!response||response.length<10)return;if(isEvaluating)return;
+  isEvaluating=true;document.getElementById('submit-btn').disabled=true;document.getElementById('submit-btn').textContent='checking…';
   const p=feedbackPoints[currentIndex];
-  const evalSys=`You are a writing coach evaluating whether a writer applied a specific principle. Evaluate application of principle only — voice and style are irrelevant. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (short: "nailed it"/"getting there"/"not quite"), feedback (2-3 sentences referencing their actual writing, specific, no fluff), example (if verdict is "partial" or "miss": a short 1-3 sentence original passage demonstrating what a passing response would look like for this exact principle and excerpt — written in a neutral voice, not copying the writer's attempt; if verdict is "pass" set example to null).`;
-  try {
-    const raw=await callClaude(evalSys,`Principle: "${p.principle}"\nExplanation: ${p.explanation}\nExercise: ${p.prompt}\nOriginal: "${p.excerpt}"\n\nWriter's response:\n"${response}"\n\nEvaluate.`);
-    const result=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    sessionResults.push({principle:p.principle,category:p.category,...result});
-    showEval(result);
-  } catch {
-    sessionResults.push({principle:p.principle,category:p.category,verdict:'skip',label:'error',feedback:'Could not evaluate.'});
-    advance();
-  }
+  const evalSys=`You are a writing coach evaluating whether a writer applied a specific principle. Evaluate application of principle only — voice and style are irrelevant. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (short: "nailed it"/"getting there"/"not quite"), feedback (2-3 sentences referencing their actual writing, specific, no fluff), example (if verdict is "partial" or "miss": a short 1-3 sentence original passage demonstrating what a passing response would look like; if verdict is "pass" set example to null).`;
+  try{const raw=await callClaude(evalSys,`Principle: "${p.principle}"\nExplanation: ${p.explanation}\nExercise: ${p.prompt}\nOriginal: "${p.excerpt}"\n\nWriter's response:\n"${response}"\n\nEvaluate.`);const result=JSON.parse(raw.replace(/```json|```/g,'').trim());sessionResults.push({principle:p.principle,category:p.category,...result});showEval(result);}
+  catch{sessionResults.push({principle:p.principle,category:p.category,verdict:'skip',label:'error',feedback:'Could not evaluate.'});advance();}
   document.getElementById('submit-btn').textContent='> check';
 });
-
-function showEval(result) {
-  const block=document.getElementById('eval-block');
-  block.className=`eval-block ${result.verdict}`;
-  const cls=result.verdict==='pass'?'eval-pass':result.verdict==='partial'?'eval-partial':'eval-miss';
-  const icon=result.verdict==='pass'?'✓':result.verdict==='partial'?'◑':'✗';
-  document.getElementById('eval-verdict').innerHTML=`<span class="${cls}">${icon} ${result.label}</span>`;
-  document.getElementById('eval-feedback').textContent=result.feedback;
-  const exampleEl=document.getElementById('eval-example');
-  const exampleText=document.getElementById('eval-example-text');
-  if(result.example && result.verdict!=='pass') {
-    exampleText.textContent=result.example;
-    exampleEl.classList.remove('hidden');
-  } else {
-    exampleEl.classList.add('hidden');
-  }
+function showEval(result){
+  const block=document.getElementById('eval-block');block.className=`eval-block ${result.verdict}`;
+  const cls=result.verdict==='pass'?'eval-pass':result.verdict==='partial'?'eval-partial':'eval-miss';const icon=result.verdict==='pass'?'✓':result.verdict==='partial'?'◑':'✗';
+  document.getElementById('eval-verdict').innerHTML=`<span class="${cls}">${icon} ${result.label}</span>`;document.getElementById('eval-feedback').textContent=result.feedback;
+  const exampleEl=document.getElementById('eval-example'),exampleText=document.getElementById('eval-example-text');
+  if(result.example&&result.verdict!=='pass'){exampleText.textContent=result.example;exampleEl.classList.remove('hidden');}else{exampleEl.classList.add('hidden');}
   block.classList.remove('hidden');
 }
-
 document.getElementById('next-btn').addEventListener('click',advance);
-document.getElementById('skip-btn').addEventListener('click',()=>{
-  sessionResults.push({principle:feedbackPoints[currentIndex].principle,category:feedbackPoints[currentIndex].category,verdict:'skip',label:'skipped',feedback:'—'});
-  advance();
-});
+document.getElementById('skip-btn').addEventListener('click',()=>{sessionResults.push({principle:feedbackPoints[currentIndex].principle,category:feedbackPoints[currentIndex].category,verdict:'skip',label:'skipped',feedback:'—'});advance();});
 function advance(){currentIndex++;if(currentIndex>=feedbackPoints.length)endSession();else showPoint();}
-document.getElementById('quit-btn').addEventListener('click',()=>{
-  if(!confirm('End session early?')) return;
-  while(sessionResults.length<feedbackPoints.length){const i=sessionResults.length;sessionResults.push({principle:feedbackPoints[i].principle,category:feedbackPoints[i].category,verdict:'skip',label:'skipped',feedback:'—'});}
-  endSession();
-});
+document.getElementById('quit-btn').addEventListener('click',()=>{if(!confirm('End session early?'))return;while(sessionResults.length<feedbackPoints.length){const i=sessionResults.length;sessionResults.push({principle:feedbackPoints[i].principle,category:feedbackPoints[i].category,verdict:'skip',label:'skipped',feedback:'—'});}endSession();});
 
-// ---- END SESSION ----
-async function endSession() {
-  showScreen('screen-loading');
-  animateLoading(['compiling results…','updating assessment…','saving to history…']);
-  incrementStreak();
-  document.getElementById('streak-display').textContent=getStreak();
-
-  const c=document.getElementById('summary-items');c.innerHTML='';
-  let passCount=0;
-  sessionResults.forEach(r=>{
-    if(r.verdict==='pass') passCount++;
-    const icon=r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`:r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`:r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;
-    const row=document.createElement('div');row.className='summary-row';
-    row.innerHTML=`<div class="summary-icon">${icon}</div><div><div class="summary-principle">${r.principle}</div><div class="summary-cat">${r.category}</div>${r.feedback!=='—'?`<div class="summary-note">${r.feedback}</div>`:''}</div>`;
-    c.appendChild(row);
-  });
-  const total=sessionResults.filter(r=>r.verdict!=='skip').length;
-  document.getElementById('summary-score').textContent=`${passCount}/${total}`;
-
-  const session = {
-    id: Date.now(),
-    date: new Date().toISOString(),
-    score: `${passCount}/${total}`,
-    passCount, total,
-    results: sessionResults.map(r=>({principle:r.principle,category:r.category,verdict:r.verdict}))
-  };
-  saveSession(session);
-  syncToGist().catch(()=>{});
-
-  try {
-    const txt=await callClaude('You are a writing coach. 2-3 sentences max. Direct, specific, no fluff.',
-      `Session results:\n${sessionResults.map(r=>`- ${r.principle} (${r.category}): ${r.verdict}`).join('\n')}\n\nWhat should this writer focus on from this session?`);
-    document.getElementById('patterns-body').textContent=txt;
-    session.note=txt;
-    const sessions=getSessions();
-    if(sessions[0]&&sessions[0].id===session.id){sessions[0].note=txt;saveSessions(sessions);}
-  } catch { document.getElementById('patterns-body').textContent='Keep at it.'; }
-
-  await updateAssessment();
-  showScreen('screen-summary');
+async function endSession(){
+  showScreen('screen-loading');animateLoading(['compiling results…','updating assessment…','saving to history…']);
+  incrementStreak();document.getElementById('streak-display').textContent=getStreak();
+  const c=document.getElementById('summary-items');c.innerHTML='';let passCount=0;
+  sessionResults.forEach(r=>{if(r.verdict==='pass')passCount++;const icon=r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`:r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`:r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;const row=document.createElement('div');row.className='summary-row';row.innerHTML=`<div class="summary-icon">${icon}</div><div><div class="summary-principle">${r.principle}</div><div class="summary-cat">${r.category}</div>${r.feedback!=='—'?`<div class="summary-note">${r.feedback}</div>`:''}</div>`;c.appendChild(row);});
+  const total=sessionResults.filter(r=>r.verdict!=='skip').length;document.getElementById('summary-score').textContent=`${passCount}/${total}`;
+  const session={id:Date.now(),date:new Date().toISOString(),score:`${passCount}/${total}`,passCount,total,results:sessionResults.map(r=>({principle:r.principle,category:r.category,verdict:r.verdict}))};
+  saveSession(session);syncToGist().catch(()=>{});
+  try{const txt=await callClaude('You are a writing coach. 2-3 sentences max. Direct, specific, no fluff.',`Session results:\n${sessionResults.map(r=>`- ${r.principle} (${r.category}): ${r.verdict}`).join('\n')}\n\nWhat should this writer focus on from this session?`);document.getElementById('patterns-body').textContent=txt;session.note=txt;const sessions=getSessions();if(sessions[0]&&sessions[0].id===session.id){sessions[0].note=txt;saveSessions(sessions);}}
+  catch{document.getElementById('patterns-body').textContent='Keep at it.';}
+  await updateAssessment();showScreen('screen-summary');
 }
-
-// ---- EVOLVING ASSESSMENT ----
-async function updateAssessment() {
-  const sessions=getSessions();
-  if(sessions.length===0) return;
-  const catTotals={}, catPass={};
-  const principleRecord={};
-  sessions.forEach(s=>{
-    (s.results||[]).forEach(r=>{
-      if(r.verdict==='skip') return;
-      catTotals[r.category]=(catTotals[r.category]||0)+1;
-      catPass[r.category]=(catPass[r.category]||0)+(r.verdict==='pass'?1:0);
-      if(!principleRecord[r.principle]) principleRecord[r.principle]={pass:0,total:0,category:r.category};
-      principleRecord[r.principle].total++;
-      if(r.verdict==='pass') principleRecord[r.principle].pass++;
-    });
-  });
+async function updateAssessment(){
+  const sessions=getSessions();if(!sessions.length)return;
+  const catTotals={},catPass={},principleRecord={};
+  sessions.forEach(s=>{(s.results||[]).forEach(r=>{if(r.verdict==='skip')return;catTotals[r.category]=(catTotals[r.category]||0)+1;catPass[r.category]=(catPass[r.category]||0)+(r.verdict==='pass'?1:0);if(!principleRecord[r.principle])principleRecord[r.principle]={pass:0,total:0,category:r.category};principleRecord[r.principle].total++;if(r.verdict==='pass')principleRecord[r.principle].pass++;});});
   const summary=Object.entries(catTotals).map(([cat,total])=>`${cat}: ${catPass[cat]||0}/${total} passed`).join(', ');
   const principles=Object.entries(principleRecord).map(([p,d])=>`"${p}" (${d.category}): ${d.pass}/${d.total} passed`).join('\n');
-  try {
-    const raw=await callClaude(
-      `You are a writing coach generating a progressive assessment for a writer based on their training history. Return ONLY valid JSON with:
-- strengths: array of 1-3 short strings naming what they handle well (principles or categories they consistently pass)
-- weaknesses: array of 1-3 short strings naming what needs work
-- focus: 2-3 sentences of direct, specific coaching advice for the next few sessions
-- overall: one sentence characterizing where they are as a writer right now`,
-      `Sessions completed: ${sessions.length}\nCategory performance: ${summary}\n\nPrinciple breakdown:\n${principles}\n\nGenerate an honest, evolving assessment.`
-    );
-    const assessment=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    assessment.updatedAt=new Date().toISOString();
-    assessment.sessionCount=sessions.length;
-    saveAssessment(assessment);
-  } catch(e) {}
+  try{const raw=await callClaude(`You are a writing coach generating a progressive assessment. Return ONLY valid JSON with:\n- strengths: array of 1-3 short strings\n- weaknesses: array of 1-3 short strings\n- focus: 2-3 sentences of direct coaching advice\n- overall: one sentence characterizing where they are as a writer`,`Sessions: ${sessions.length}\nCategory performance: ${summary}\n\nPrinciple breakdown:\n${principles}\n\nGenerate an honest assessment.`);const assessment=JSON.parse(raw.replace(/```json|```/g,'').trim());assessment.updatedAt=new Date().toISOString();assessment.sessionCount=sessions.length;saveAssessment(assessment);}catch(e){}
 }
 
-// ========== DRILL MODULE ==========
-
-document.getElementById('drill-start-btn').addEventListener('click', startDrill);
-
-async function startDrill() {
+// ---- DRILL ----
+document.getElementById('drill-start-btn').addEventListener('click',startDrill);
+async function startDrill(){
   showScreen('screen-loading');
-  const weights = getDrillCategoryWeights();
-
-  // Build a weighted category list for the prompt
-  const weightStr = weights.map(w => `${w.cat}: weight ${w.weight.toFixed(2)}`).join(', ');
-  // Pick categories proportionally
-  const totalWeight = weights.reduce((s,w)=>s+w.weight,0);
-  const catCounts = {};
-  weights.forEach(w => { catCounts[w.cat] = 0; });
-
-  // Assign each drill slot to a category using weighted random
-  const assignments = [];
-  for (let i=0; i<drillCount; i++) {
-    let r = Math.random() * totalWeight;
-    for (const w of weights) {
-      r -= w.weight;
-      if (r <= 0) { assignments.push(w.cat); break; }
-    }
-    if (assignments.length < i+1) assignments.push(weights[weights.length-1].cat);
-  }
-  assignments.forEach(c => catCounts[c]++);
-
-  const catDistStr = Object.entries(catCounts).filter(([,v])=>v>0).map(([k,v])=>`${k}: ${v}`).join(', ');
-
-  animateLoading([`loading the sentence gym…`, `generating ${drillCount} targeted reps…`, `skewing towards weak spots…`, `ready…`]);
-
-  const system = `You are a writing coach generating sentence-level drill exercises for a nonfiction writer who writes slice-of-life stories, personal essays, and travel/expat content.
-
-Generate exactly ${drillCount} flawed sentences for revision drills. Each sentence should have ONE clear, fixable problem targeting a specific writing principle.
-
-Category distribution to use: ${catDistStr}
-
-For each drill item return a JSON object with:
-- category: one of "Structure & Flow", "Clarity & Concision", "Sentence Rhythm", "Word Choice"
-- principle: the specific habit being drilled (e.g. "Cut the throat-clearing", "Strengthen the verb", "Vary sentence length")
-- sentence: a realistic flawed sentence (20-45 words) written in a nonfiction, slice-of-life style. Make it feel like something a real writer actually wrote — not a textbook example. The flaw should be genuine but fixable.
-- issue: one sentence explaining exactly what's wrong and what to fix
-
-Vary topics across: daily observations, travel moments, city life, food, relationships, work, memory, weather, small rituals, urban scenes. No two sentences should feel alike.
-
-Return ONLY a valid JSON array of exactly ${drillCount} objects. No preamble, no markdown fences.`;
-
-  try {
-    const raw = await callClaude(system, `Generate ${drillCount} drill sentences. Category distribution: ${catDistStr}`);
-    drillSentences = JSON.parse(raw.replace(/```json|```/g,'').trim());
-    drillIndex = 0; drillResults = [];
-    buildDrillDots();
-    showDrillPoint();
-  } catch(e) {
-    alert('Could not generate drill. Please try again.');
-    showScreen('screen-intro');
-    document.getElementById('tab-drill-btn').click();
-  }
+  const weights=getDrillCategoryWeights();const totalWeight=weights.reduce((s,w)=>s+w.weight,0);
+  const catCounts={};weights.forEach(w=>{catCounts[w.cat]=0;});const assignments=[];
+  for(let i=0;i<drillCount;i++){let r=Math.random()*totalWeight;for(const w of weights){r-=w.weight;if(r<=0){assignments.push(w.cat);break;}}if(assignments.length<i+1)assignments.push(weights[weights.length-1].cat);}
+  assignments.forEach(c=>catCounts[c]=(catCounts[c]||0)+1);
+  const catDistStr=Object.entries(catCounts).filter(([,v])=>v>0).map(([k,v])=>`${k}: ${v}`).join(', ');
+  animateLoading([`loading the sentence gym…`,`generating ${drillCount} targeted reps…`,`skewing towards weak spots…`,`ready…`]);
+  const system=`You are a writing coach generating sentence-level drill exercises for a nonfiction writer who writes slice-of-life stories, personal essays, and travel/expat content.\n\nGenerate exactly ${drillCount} flawed sentences for revision drills. Each sentence should have ONE clear, fixable problem targeting a specific writing principle.\n\nCategory distribution: ${catDistStr}\n\nFor each item return a JSON object with:\n- category: one of "Structure & Flow", "Clarity & Concision", "Sentence Rhythm", "Word Choice"\n- principle: the specific habit being drilled (e.g. "Cut the throat-clearing", "Strengthen the verb")\n- sentence: a realistic flawed sentence (20-45 words) in a nonfiction, slice-of-life style — feel like something a real writer wrote, not a textbook example\n- issue: one sentence explaining exactly what's wrong and what to fix\n\nVary topics: daily observations, travel moments, city life, food, relationships, work, memory, weather, small rituals, urban scenes.\n\nReturn ONLY a valid JSON array of exactly ${drillCount} objects. No preamble, no markdown fences.`;
+  try{const raw=await callClaude(system,`Generate ${drillCount} drill sentences. Distribution: ${catDistStr}`);drillSentences=JSON.parse(raw.replace(/```json|```/g,'').trim());drillIndex=0;drillResults=[];buildDrillDots();showDrillPoint();}
+  catch(e){alert('Could not generate drill. Please try again.');showScreen('screen-intro');document.getElementById('tab-drill-btn').click();}
 }
-
-function buildDrillDots() {
-  const c = document.getElementById('drill-progress-dots'); c.innerHTML='';
-  drillSentences.forEach((_,i) => {
-    const d = document.createElement('div');
-    d.className = 'progress-dot' + (i===0?' active':'');
-    d.id = `ddot-${i}`;
-    c.appendChild(d);
-  });
-  document.getElementById('drill-pos-total').textContent = drillSentences.length;
+function buildDrillDots(){const c=document.getElementById('drill-progress-dots');c.innerHTML='';drillSentences.forEach((_,i)=>{const d=document.createElement('div');d.className='progress-dot'+(i===0?' active':'');d.id=`ddot-${i}`;c.appendChild(d);});document.getElementById('drill-pos-total').textContent=drillSentences.length;}
+function updateDrillDots(){drillSentences.forEach((_,i)=>{const d=document.getElementById(`ddot-${i}`);d.className='progress-dot'+(i<drillIndex?' done':i===drillIndex?' active':'');});}
+function showDrillPoint(){
+  showScreen('screen-drill');isDrillEvaluating=false;const s=drillSentences[drillIndex];
+  document.getElementById('drill-pos-current').textContent=drillIndex+1;updateDrillDots();
+  document.getElementById('drill-card-area').innerHTML=`<div class="drill-card" id="drill-card">
+    <div class="drill-card-top"><span class="drill-card-category">${s.category}</span><span class="drill-card-principle">${s.principle}</span></div>
+    <div class="drill-original-label">original sentence</div>
+    <div class="drill-original">${s.sentence}</div>
+    <div class="drill-issue">${s.issue}</div>
+    <div class="drill-response-label">your revision</div>
+    <textarea class="response-area" id="drill-response" placeholder="rewrite the sentence…" style="min-height:70px;"></textarea>
+    <div class="exercise-actions">
+      <button class="btn btn-green" id="drill-submit-btn">> check</button>
+      <button class="btn btn-ghost" id="drill-skip-btn">skip</button>
+    </div>
+  </div>`;
+  document.getElementById('drill-submit-btn').addEventListener('click',submitDrillRep);
+  document.getElementById('drill-skip-btn').addEventListener('click',skipDrillRep);
 }
-
-function updateDrillDots() {
-  drillSentences.forEach((_,i) => {
-    const d = document.getElementById(`ddot-${i}`);
-    d.className = 'progress-dot' + (i<drillIndex?' done': i===drillIndex?' active':'');
-  });
+async function submitDrillRep(){
+  const response=document.getElementById('drill-response').value.trim();if(!response||response.length<5)return;if(isDrillEvaluating)return;
+  isDrillEvaluating=true;const submitBtn=document.getElementById('drill-submit-btn');submitBtn.disabled=true;submitBtn.textContent='checking…';
+  const s=drillSentences[drillIndex];
+  const evalSys=`You are a writing coach evaluating a sentence revision drill. Evaluate ONLY whether they fixed the specific problem. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (very short: "nailed it"/"getting there"/"not quite"), feedback (1-2 sentences specific to their revision), example (if "partial" or "miss": a clean 1-sentence revision showing a passing fix; if "pass" set to null).`;
+  try{const raw=await callClaude(evalSys,`Principle: "${s.principle}"\nIssue: ${s.issue}\nOriginal: "${s.sentence}"\n\nWriter's revision:\n"${response}"\n\nEvaluate.`);const result=JSON.parse(raw.replace(/```json|```/g,'').trim());drillResults.push({principle:s.principle,category:s.category,...result});showDrillEval(result);}
+  catch{drillResults.push({principle:s.principle,category:s.category,verdict:'skip',label:'error',feedback:'Could not evaluate.'});advanceDrill();}
 }
-
-function showDrillPoint() {
-  showScreen('screen-drill');
-  isDrillEvaluating = false;
-  const s = drillSentences[drillIndex];
-  document.getElementById('drill-pos-current').textContent = drillIndex + 1;
-  updateDrillDots();
-
-  const area = document.getElementById('drill-card-area');
-  area.innerHTML = `
-    <div class="drill-card" id="drill-card">
-      <div class="drill-card-top">
-        <span class="drill-card-category">${s.category}</span>
-        <span class="drill-card-principle">${s.principle}</span>
-      </div>
-      <div class="drill-original-label">original sentence</div>
-      <div class="drill-original">${s.sentence}</div>
-      <div class="drill-issue">${s.issue}</div>
-      <div class="drill-response-label">your revision</div>
-      <textarea class="response-area" id="drill-response" placeholder="rewrite the sentence…" style="min-height:70px;"></textarea>
-      <div class="exercise-actions">
-        <button class="btn btn-green" id="drill-submit-btn">> check</button>
-        <button class="btn btn-ghost" id="drill-skip-btn">skip</button>
-      </div>
-    </div>`;
-
-  document.getElementById('drill-submit-btn').addEventListener('click', submitDrillRep);
-  document.getElementById('drill-skip-btn').addEventListener('click', skipDrillRep);
+function showDrillEval(result){
+  const cls=result.verdict==='pass'?'eval-pass':result.verdict==='partial'?'eval-partial':'eval-miss';const icon=result.verdict==='pass'?'✓':result.verdict==='partial'?'◑':'✗';
+  const exHtml=(result.example&&result.verdict!=='pass')?`<div class="drill-eval-example"><div class="drill-eval-example-label">// what a pass looks like</div><div class="drill-eval-example-text">${result.example}</div></div>`:'';
+  document.getElementById('drill-card').insertAdjacentHTML('beforeend',`<div class="drill-eval ${result.verdict}"><div class="drill-eval-verdict"><span class="${cls}">${icon} ${result.label}</span></div><div class="drill-eval-feedback">${result.feedback}</div>${exHtml}<div class="drill-next-btn-wrap"><button class="btn btn-primary" id="drill-next-btn">${drillIndex+1>=drillSentences.length?'see results →':'next rep →'}</button></div></div>`);
+  document.getElementById('drill-next-btn').addEventListener('click',advanceDrill);
+  const sb=document.getElementById('drill-submit-btn'),sk=document.getElementById('drill-skip-btn');if(sb)sb.style.display='none';if(sk)sk.style.display='none';
 }
-
-async function submitDrillRep() {
-  const response = document.getElementById('drill-response').value.trim();
-  if (!response || response.length < 5) return;
-  if (isDrillEvaluating) return;
-  isDrillEvaluating = true;
-
-  const submitBtn = document.getElementById('drill-submit-btn');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'checking…';
-
-  const s = drillSentences[drillIndex];
-  const evalSys = `You are a writing coach evaluating a sentence revision drill. The writer was asked to fix one specific problem. Evaluate ONLY whether they fixed that problem — ignore everything else about their style. Return ONLY valid JSON with: verdict ("pass"/"partial"/"miss"), label (very short: "nailed it"/"getting there"/"not quite"), feedback (1-2 sentences, specific to their revision), example (if verdict is "partial" or "miss": a clean 1-sentence revision demonstrating a passing fix; if "pass" set to null).`;
-
-  try {
-    const raw = await callClaude(evalSys,
-      `Principle: "${s.principle}"\nIssue: ${s.issue}\nOriginal: "${s.sentence}"\n\nWriter's revision:\n"${response}"\n\nEvaluate.`);
-    const result = JSON.parse(raw.replace(/```json|```/g,'').trim());
-    drillResults.push({ principle: s.principle, category: s.category, original: s.sentence, revision: response, ...result });
-    showDrillEval(result);
-  } catch {
-    drillResults.push({ principle: s.principle, category: s.category, verdict: 'skip', label: 'error', feedback: 'Could not evaluate.' });
-    advanceDrill();
-  }
-}
-
-function showDrillEval(result) {
-  const cls = result.verdict==='pass'?'eval-pass': result.verdict==='partial'?'eval-partial':'eval-miss';
-  const icon = result.verdict==='pass'?'✓': result.verdict==='partial'?'◑':'✗';
-
-  const exampleHtml = (result.example && result.verdict!=='pass') ? `
-    <div class="drill-eval-example">
-      <div class="drill-eval-example-label">// what a pass looks like</div>
-      <div class="drill-eval-example-text">${result.example}</div>
-    </div>` : '';
-
-  const evalHtml = `
-    <div class="drill-eval ${result.verdict}" id="drill-eval-block">
-      <div class="drill-eval-verdict"><span class="${cls}">${icon} ${result.label}</span></div>
-      <div class="drill-eval-feedback">${result.feedback}</div>
-      ${exampleHtml}
-      <div class="drill-next-btn-wrap">
-        <button class="btn btn-primary" id="drill-next-btn">${drillIndex+1 >= drillSentences.length ? 'see results →' : 'next rep →'}</button>
-      </div>
-    </div>`;
-
-  document.getElementById('drill-card').insertAdjacentHTML('beforeend', evalHtml);
-  document.getElementById('drill-next-btn').addEventListener('click', advanceDrill);
-
-  // Hide submit/skip
-  const submitBtn = document.getElementById('drill-submit-btn');
-  const skipBtn = document.getElementById('drill-skip-btn');
-  if (submitBtn) submitBtn.style.display = 'none';
-  if (skipBtn) skipBtn.style.display = 'none';
-}
-
-function skipDrillRep() {
-  drillResults.push({ principle: drillSentences[drillIndex].principle, category: drillSentences[drillIndex].category, verdict: 'skip', label: 'skipped', feedback: '—' });
-  advanceDrill();
-}
-
-function advanceDrill() {
-  drillIndex++;
-  if (drillIndex >= drillSentences.length) endDrill();
-  else showDrillPoint();
-}
-
-document.getElementById('drill-quit-btn').addEventListener('click', () => {
-  if (!confirm('End drill early?')) return;
-  while (drillResults.length < drillSentences.length) {
-    const i = drillResults.length;
-    drillResults.push({ principle: drillSentences[i].principle, category: drillSentences[i].category, verdict: 'skip', label: 'skipped', feedback: '—' });
-  }
-  endDrill();
-});
-
-function endDrill() {
-  // Build summary
-  let passCount = 0;
-  const total = drillResults.filter(r => r.verdict !== 'skip').length;
-  drillResults.forEach(r => { if (r.verdict === 'pass') passCount++; });
-
-  document.getElementById('drill-summary-score').textContent = `${passCount}/${total}`;
-
-  // Per-row breakdown
-  const itemsEl = document.getElementById('drill-summary-items');
-  itemsEl.innerHTML = '';
-  drillResults.forEach(r => {
-    const icon = r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`: r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`: r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;
-    const row = document.createElement('div');
-    row.className = 'drill-summary-row';
-    row.innerHTML = `<div class="drill-summary-icon">${icon}</div><div><div class="drill-summary-principle">${r.principle}</div><div class="drill-summary-cat">${r.category}</div>${r.feedback && r.feedback!=='—'?`<div class="drill-summary-note">${r.feedback}</div>`:''}</div>`;
-    itemsEl.appendChild(row);
-  });
-
-  // Save drill session
-  const drillSession = {
-    id: Date.now(),
-    date: new Date().toISOString(),
-    score: `${passCount}/${total}`,
-    passCount, total,
-    results: drillResults.map(r => ({ principle: r.principle, category: r.category, verdict: r.verdict }))
-  };
-  saveDrillSession(drillSession);
-
-  // Weak category callout
-  const weakest = getWeakestCategory();
-  const weakBlock = document.getElementById('drill-weak-block');
-  const weakBody = document.getElementById('drill-weak-body');
-  if (weakest && weakest.total >= 3) {
-    const pct = Math.round(weakest.rate * 100);
-    weakBody.textContent = `Your weakest area is ${weakest.cat} — ${pct}% pass rate across all training. The next drill will weight this category more heavily.`;
-    weakBlock.classList.remove('hidden');
-  } else {
-    weakBlock.classList.add('hidden');
-  }
-
+function skipDrillRep(){drillResults.push({principle:drillSentences[drillIndex].principle,category:drillSentences[drillIndex].category,verdict:'skip',label:'skipped',feedback:'—'});advanceDrill();}
+function advanceDrill(){drillIndex++;if(drillIndex>=drillSentences.length)endDrill();else showDrillPoint();}
+document.getElementById('drill-quit-btn').addEventListener('click',()=>{if(!confirm('End drill early?'))return;while(drillResults.length<drillSentences.length){const i=drillResults.length;drillResults.push({principle:drillSentences[i].principle,category:drillSentences[i].category,verdict:'skip',label:'skipped',feedback:'—'});}endDrill();});
+function endDrill(){
+  let passCount=0;const total=drillResults.filter(r=>r.verdict!=='skip').length;drillResults.forEach(r=>{if(r.verdict==='pass')passCount++;});
+  document.getElementById('drill-summary-score').textContent=`${passCount}/${total}`;
+  const itemsEl=document.getElementById('drill-summary-items');itemsEl.innerHTML='';
+  drillResults.forEach(r=>{const icon=r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`:r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`:r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;const row=document.createElement('div');row.className='drill-summary-row';row.innerHTML=`<div class="drill-summary-icon">${icon}</div><div><div class="drill-summary-principle">${r.principle}</div><div class="drill-summary-cat">${r.category}</div>${r.feedback&&r.feedback!=='—'?`<div class="drill-summary-note">${r.feedback}</div>`:''}</div>`;itemsEl.appendChild(row);});
+  saveDrillSession({id:Date.now(),date:new Date().toISOString(),score:`${passCount}/${total}`,passCount,total,results:drillResults.map(r=>({principle:r.principle,category:r.category,verdict:r.verdict}))});
+  const weakest=getWeakestCategory();const wb=document.getElementById('drill-weak-block');const wbd=document.getElementById('drill-weak-body');
+  if(weakest&&weakest.total>=3){const pct=Math.round(weakest.rate*100);wbd.textContent=`Your weakest area is ${weakest.cat} — ${pct}% pass rate across all training. The next drill will weight this category more heavily.`;wb.classList.remove('hidden');}else{wb.classList.add('hidden');}
   showScreen('screen-drill-summary');
 }
 
-// ========== HISTORY ==========
-
-function renderHistory() {
-  const sessions=getSessions();
-  document.getElementById('history-count').textContent=`${sessions.length} of ${MAX_SESSIONS} sessions`;
-
-  const assessment=getAssessment();
-  const assessmentContent=document.getElementById('assessment-content');
-  if(assessment) {
-    const updatedDate=new Date(assessment.updatedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-    document.getElementById('assessment-updated').textContent=`updated ${updatedDate} · ${assessment.sessionCount} sessions`;
-    assessmentContent.innerHTML=`
-      <div class="assessment-body">
-        <div class="assessment-section">
-          <div class="assessment-section-label">overall</div>
-          <div class="assessment-text">${assessment.overall||'—'}</div>
-        </div>
-        <div class="assessment-section">
-          <div class="assessment-section-label">strengths</div>
-          <div class="assessment-pills">${(assessment.strengths||[]).map(s=>`<span class="pill pill-green">${s}</span>`).join('')||'<span style="font-size:12px;color:var(--text-dim)">none identified yet</span>'}</div>
-        </div>
-        <div class="assessment-section">
-          <div class="assessment-section-label">needs work</div>
-          <div class="assessment-pills">${(assessment.weaknesses||[]).map(s=>`<span class="pill pill-red">${s}</span>`).join('')||'<span style="font-size:12px;color:var(--text-dim)">none identified yet</span>'}</div>
-        </div>
-        <div class="assessment-section">
-          <div class="assessment-section-label">focus for next sessions</div>
-          <div class="assessment-text">${assessment.focus||'—'}</div>
-        </div>
-      </div>`;
-  } else {
-    document.getElementById('assessment-updated').textContent='';
-    assessmentContent.innerHTML='<div class="assessment-empty">complete a session to generate your first assessment.</div>';
-  }
-
-  // Category stats — now includes drill data
-  const combinedStats = getCombinedCatStats();
-  const hasAny = combinedStats.some(s => s.total > 0);
-  if (hasAny) {
-    const statsEl=document.getElementById('cat-stats');
-    statsEl.innerHTML=combinedStats.map(({cat,total,pass})=>{
-      const pct=total>0?Math.round((pass/total)*100):0;
-      return `<div class="cat-stat">
-        <div class="cat-stat-name">${cat}</div>
-        <div class="cat-stat-bar-wrap"><div class="cat-stat-bar" style="width:${pct}%"></div></div>
-        <div class="cat-stat-nums"><span>${pass}</span>/${total} passed &nbsp;·&nbsp; ${pct}%</div>
-      </div>`;
-    }).join('');
-    document.getElementById('cat-stats-section').classList.remove('hidden');
-  } else {
-    document.getElementById('cat-stats-section').classList.add('hidden');
-  }
-
-  // Session list
+// ---- HISTORY ----
+function renderHistory(){
+  const sessions=getSessions();document.getElementById('history-count').textContent=`${sessions.length} of ${MAX_SESSIONS} sessions`;
+  const assessment=getAssessment();const ac=document.getElementById('assessment-content');
+  if(assessment){const ud=new Date(assessment.updatedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});document.getElementById('assessment-updated').textContent=`updated ${ud} · ${assessment.sessionCount} sessions`;ac.innerHTML=`<div class="assessment-body"><div class="assessment-section"><div class="assessment-section-label">overall</div><div class="assessment-text">${assessment.overall||'—'}</div></div><div class="assessment-section"><div class="assessment-section-label">strengths</div><div class="assessment-pills">${(assessment.strengths||[]).map(s=>`<span class="pill pill-green">${s}</span>`).join('')||'<span style="font-size:12px;color:var(--text-dim)">none identified yet</span>'}</div></div><div class="assessment-section"><div class="assessment-section-label">needs work</div><div class="assessment-pills">${(assessment.weaknesses||[]).map(s=>`<span class="pill pill-red">${s}</span>`).join('')||'<span style="font-size:12px;color:var(--text-dim)">none identified yet</span>'}</div></div><div class="assessment-section"><div class="assessment-section-label">focus for next sessions</div><div class="assessment-text">${assessment.focus||'—'}</div></div></div>`;}
+  else{document.getElementById('assessment-updated').textContent='';ac.innerHTML='<div class="assessment-empty">complete a session to generate your first assessment.</div>';}
+  const cs=getCombinedCatStats();const hasAny=cs.some(s=>s.total>0);
+  if(hasAny){const se=document.getElementById('cat-stats');se.innerHTML=cs.map(({cat,total,pass})=>{const pct=total>0?Math.round((pass/total)*100):0;return`<div class="cat-stat"><div class="cat-stat-name">${cat}</div><div class="cat-stat-bar-wrap"><div class="cat-stat-bar" style="width:${pct}%"></div></div><div class="cat-stat-nums"><span>${pass}</span>/${total} passed &nbsp;·&nbsp; ${pct}%</div></div>`;}).join('');document.getElementById('cat-stats-section').classList.remove('hidden');}else{document.getElementById('cat-stats-section').classList.add('hidden');}
   const listEl=document.getElementById('history-sessions');
-  if(sessions.length===0) {
-    listEl.innerHTML='<div class="history-empty">no sessions yet.</div>';
-  } else {
-    listEl.innerHTML=sessions.map((s,i)=>{
-      const d=new Date(s.date);
-      const dateStr=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-      const timeStr=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
-      const cats=[...new Set((s.results||[]).filter(r=>r.verdict!=='skip').map(r=>r.category))];
-      const catSummary=cats.slice(0,2).join(', ')+(cats.length>2?'…':'');
-      const rows=(s.results||[]).map(r=>{
-        const icon=r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`:r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`:r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;
-        return `<div class="history-detail-row"><div class="history-detail-icon">${icon}</div><div class="history-detail-principle">${r.principle}</div><div class="history-detail-cat">${r.category}</div></div>`;
-      }).join('');
-      const noteHtml=s.note?`<div style="font-size:11px;color:var(--text-dim);line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">${s.note}</div>`:'';
-      return `<div class="history-session">
-        <div class="history-session-header" onclick="toggleSession(${i})">
-          <span class="history-session-date">${dateStr} ${timeStr}</span>
-          <span class="history-session-score">${s.score}</span>
-          <span class="history-session-summary">${catSummary}</span>
-          <span class="history-session-toggle" id="toggle-${i}">▸</span>
-        </div>
-        <div class="history-session-detail" id="detail-${i}">
-          <div class="history-detail-items">${rows}</div>${noteHtml}
-        </div>
-      </div>`;
-    }).join('');
-  }
+  if(!sessions.length){listEl.innerHTML='<div class="history-empty">no sessions yet.</div>';}
+  else{listEl.innerHTML=sessions.map((s,i)=>{const d=new Date(s.date);const ds=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});const ts=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});const cats=[...new Set((s.results||[]).filter(r=>r.verdict!=='skip').map(r=>r.category))];const cs2=cats.slice(0,2).join(', ')+(cats.length>2?'…':'');const rows=(s.results||[]).map(r=>{const icon=r.verdict==='pass'?`<span style="color:var(--green)">✓</span>`:r.verdict==='partial'?`<span style="color:var(--amber)">◑</span>`:r.verdict==='skip'?`<span style="color:var(--text-dim)">—</span>`:`<span style="color:var(--red)">✗</span>`;return`<div class="history-detail-row"><div class="history-detail-icon">${icon}</div><div class="history-detail-principle">${r.principle}</div><div class="history-detail-cat">${r.category}</div></div>`;}).join('');const nh=s.note?`<div style="font-size:11px;color:var(--text-dim);line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">${s.note}</div>`:'';return`<div class="history-session"><div class="history-session-header" onclick="toggleSession(${i})"><span class="history-session-date">${ds} ${ts}</span><span class="history-session-score">${s.score}</span><span class="history-session-summary">${cs2}</span><span class="history-session-toggle" id="toggle-${i}">▸</span></div><div class="history-session-detail" id="detail-${i}"><div class="history-detail-items">${rows}</div>${nh}</div></div>`;}).join('');}
 }
-
-// ---- EXPORT HISTORY ----
-function exportHistory() {
-  const sessions = getSessions();
-  const assessment = getAssessment();
-  const streak = getStreak();
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
-  const lines = [];
-
-  lines.push('# The Forge — Writing History');
-  lines.push(`exported ${dateStr} · ${sessions.length} session${sessions.length!==1?'s':''} · streak ${streak}`);
-  lines.push('');
-  lines.push('─'.repeat(40));
-  lines.push('');
-
-  if (assessment) {
-    const updatedDate = new Date(assessment.updatedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
-    lines.push('## Writer Assessment');
-    lines.push(`updated ${updatedDate} · ${assessment.sessionCount} session${assessment.sessionCount!==1?'s':''}`);
-    lines.push('');
-    lines.push('**Overall**');
-    lines.push(assessment.overall || '—');
-    lines.push('');
-    lines.push('**Strengths**');
-    (assessment.strengths || []).forEach(s => lines.push(`- ${s}`));
-    if (!assessment.strengths || assessment.strengths.length === 0) lines.push('- none identified yet');
-    lines.push('');
-    lines.push('**Needs Work**');
-    (assessment.weaknesses || []).forEach(s => lines.push(`- ${s}`));
-    if (!assessment.weaknesses || assessment.weaknesses.length === 0) lines.push('- none identified yet');
-    lines.push('');
-    lines.push('**Focus for Next Sessions**');
-    lines.push(assessment.focus || '—');
-    lines.push('');
-    lines.push('─'.repeat(40));
-    lines.push('');
-  }
-
-  lines.push('## Sessions');
-  lines.push('');
-  if (sessions.length === 0) {
-    lines.push('No sessions yet.');
-  } else {
-    sessions.forEach(s => {
-      const d = new Date(s.date);
-      const sessionDate = d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
-      const sessionTime = d.toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'});
-      lines.push(`### ${sessionDate} — ${sessionTime}`);
-      lines.push(`Score: ${s.score}`);
-      lines.push('');
-      (s.results || []).forEach(r => {
-        const icon = r.verdict==='pass' ? '✓' : r.verdict==='partial' ? '◑' : r.verdict==='skip' ? '—' : '✗';
-        lines.push(`${icon} ${r.principle} · ${r.category}`);
-      });
-      if (s.note) {
-        lines.push('');
-        lines.push(`> ${s.note}`);
-      }
-      lines.push('');
-    });
-  }
-
-  lines.push('─'.repeat(40));
-  lines.push('');
-  lines.push('*Vibe coded by Dan · The Forge v1.2.0*');
-
-  const blob = new Blob([lines.join('\n')], {type: 'text/markdown'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `forge-history-${now.toISOString().slice(0,10)}.md`;
-  a.click();
-  URL.revokeObjectURL(url);
+function exportHistory(){
+  const sessions=getSessions();const assessment=getAssessment();const streak=getStreak();const now=new Date();const dateStr=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});const lines=[];
+  lines.push('# The Forge — Writing History');lines.push(`exported ${dateStr} · ${sessions.length} session${sessions.length!==1?'s':''} · streak ${streak}`);lines.push('');lines.push('─'.repeat(40));lines.push('');
+  if(assessment){const ud=new Date(assessment.updatedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});lines.push('## Writer Assessment');lines.push(`updated ${ud} · ${assessment.sessionCount} session${assessment.sessionCount!==1?'s':''}`);lines.push('');lines.push('**Overall**');lines.push(assessment.overall||'—');lines.push('');lines.push('**Strengths**');(assessment.strengths||[]).forEach(s=>lines.push(`- ${s}`));if(!assessment.strengths||!assessment.strengths.length)lines.push('- none identified yet');lines.push('');lines.push('**Needs Work**');(assessment.weaknesses||[]).forEach(s=>lines.push(`- ${s}`));if(!assessment.weaknesses||!assessment.weaknesses.length)lines.push('- none identified yet');lines.push('');lines.push('**Focus for Next Sessions**');lines.push(assessment.focus||'—');lines.push('');lines.push('─'.repeat(40));lines.push('');}
+  lines.push('## Sessions');lines.push('');
+  if(!sessions.length){lines.push('No sessions yet.');}else{sessions.forEach(s=>{const d=new Date(s.date);lines.push(`### ${d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} — ${d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}`);lines.push(`Score: ${s.score}`);lines.push('');(s.results||[]).forEach(r=>{const icon=r.verdict==='pass'?'✓':r.verdict==='partial'?'◑':r.verdict==='skip'?'—':'✗';lines.push(`${icon} ${r.principle} · ${r.category}`);});if(s.note){lines.push('');lines.push(`> ${s.note}`);}lines.push('');});}
+  lines.push('─'.repeat(40));lines.push('');lines.push('*Vibe coded by Dan · The Forge v1.2.0*');
+  const blob=new Blob([lines.join('\n')],{type:'text/markdown'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`forge-history-${now.toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(url);
 }
-
-document.getElementById('history-export-btn').addEventListener('click', exportHistory);
+document.getElementById('history-export-btn').addEventListener('click',exportHistory);
 
 // ---- GITHUB GIST SYNC ----
-function getGithubToken() { return localStorage.getItem('forge_github_token')||''; }
-function getGistId() { return localStorage.getItem('forge_gist_id')||''; }
-
-function setSyncStatus(state, msg) {
-  const dot = document.getElementById('sync-dot');
-  const label = document.getElementById('sync-label');
-  if (!dot||!label) return;
-  dot.className = 'sync-dot' + (state?' '+state:'');
-  label.textContent = msg;
+function getGithubToken(){return localStorage.getItem('forge_github_token')||'';}
+function getGistId(){return localStorage.getItem('forge_gist_id')||'';}
+function setSyncStatus(state,msg){const dot=document.getElementById('sync-dot');const label=document.getElementById('sync-label');if(!dot||!label)return;dot.className='sync-dot'+(state?' '+state:'');label.textContent=msg;}
+function initGithubTokenUI(){
+  const token=getGithubToken();const setRow=document.getElementById('github-token-set-row');const savedRow=document.getElementById('github-token-saved-row');const maskedEl=document.getElementById('github-token-masked');
+  if(token){setRow.classList.add('hidden');savedRow.classList.remove('hidden');maskedEl.textContent=token.slice(0,8)+'…'+token.slice(-4)+' · gist sync active';setSyncStatus('synced','github sync active');}
+  else{setRow.classList.remove('hidden');savedRow.classList.add('hidden');setSyncStatus('','not synced — add github token to enable');}
 }
-
-function initGithubTokenUI() {
-  const token = getGithubToken();
-  const setRow = document.getElementById('github-token-set-row');
-  const savedRow = document.getElementById('github-token-saved-row');
-  const maskedEl = document.getElementById('github-token-masked');
-  if (token) {
-    setRow.classList.add('hidden');
-    savedRow.classList.remove('hidden');
-    maskedEl.textContent = token.slice(0,8)+'…'+token.slice(-4) + ' · gist sync active';
-    setSyncStatus('synced', 'github sync active');
-  } else {
-    setRow.classList.remove('hidden');
-    savedRow.classList.add('hidden');
-    setSyncStatus('', 'not synced — add github token to enable');
-  }
-}
-
-document.getElementById('github-token-save').addEventListener('click', async () => {
-  const val = document.getElementById('github-token-input').value.trim();
-  if (!val) return;
-  const res = await fetch('https://api.github.com/user', { headers: { 'Authorization': `token ${val}` } });
-  if (!res.ok) { alert('Invalid GitHub token — check and try again.'); return; }
-  localStorage.setItem('forge_github_token', val);
-  document.getElementById('github-token-input').value = '';
-  initGithubTokenUI();
-  await syncToGist();
-  renderHistory();
+document.getElementById('github-token-save').addEventListener('click',async()=>{
+  const val=document.getElementById('github-token-input').value.trim();if(!val)return;
+  const res=await fetch('https://api.github.com/user',{headers:{'Authorization':`token ${val}`}});if(!res.ok){alert('Invalid GitHub token — check and try again.');return;}
+  localStorage.setItem('forge_github_token',val);document.getElementById('github-token-input').value='';initGithubTokenUI();await syncToGist();renderHistory();
 });
-
-document.getElementById('github-token-clear').addEventListener('click', () => {
-  if (!confirm('Remove GitHub sync token? Your local history is kept.')) return;
-  localStorage.removeItem('forge_github_token');
-  localStorage.removeItem('forge_gist_id');
-  initGithubTokenUI();
-});
-
-async function syncToGist() {
-  const token = getGithubToken();
-  if (!token) return;
-  const sessions = getSessions();
-  const assessment = getAssessment();
-  const drillHistory = getDrillHistory();
-  const payload = JSON.stringify({ sessions, assessment, drillHistory }, null, 2);
-  const gistId = getGistId();
-  setSyncStatus('syncing', 'syncing…');
-  try {
-    let res;
-    if (gistId) {
-      res = await fetch(`https://api.github.com/gists/${gistId}`, {
-        method: 'PATCH',
-        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ files: { 'forge-history.json': { content: payload } } })
-      });
-    } else {
-      res = await fetch('https://api.github.com/gists', {
-        method: 'POST',
-        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ description: 'The Forge — writing history', public: false, files: { 'forge-history.json': { content: payload } } })
-      });
-      if (res.ok) {
-        const data = await res.json();
-        localStorage.setItem('forge_gist_id', data.id);
-      }
-    }
-    if (res.ok) {
-      const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
-      setSyncStatus('synced', `synced at ${now}`);
-    } else {
-      setSyncStatus('error', 'sync failed — check token');
-    }
-  } catch(e) {
-    setSyncStatus('error', 'sync failed — check connection');
-  }
+document.getElementById('github-token-clear').addEventListener('click',()=>{if(!confirm('Remove GitHub sync token? Your local history is kept.'))return;localStorage.removeItem('forge_github_token');localStorage.removeItem('forge_gist_id');initGithubTokenUI();});
+async function syncToGist(){
+  const token=getGithubToken();if(!token)return;
+  const payload=JSON.stringify({sessions:getSessions(),assessment:getAssessment(),drillHistory:getDrillHistory()},null,2);const gistId=getGistId();setSyncStatus('syncing','syncing…');
+  try{let res;if(gistId){res=await fetch(`https://api.github.com/gists/${gistId}`,{method:'PATCH',headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({files:{'forge-history.json':{content:payload}}})});}else{res=await fetch('https://api.github.com/gists',{method:'POST',headers:{'Authorization':`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({description:'The Forge — writing history',public:false,files:{'forge-history.json':{content:payload}}})});if(res.ok){const data=await res.json();localStorage.setItem('forge_gist_id',data.id);}}
+    if(res.ok){const now=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});setSyncStatus('synced',`synced at ${now}`);}else{setSyncStatus('error','sync failed — check token');}}
+  catch(e){setSyncStatus('error','sync failed — check connection');}
 }
-
-async function syncFromGist() {
-  const token = getGithubToken();
-  const gistId = getGistId();
-  if (!token || !gistId) return false;
-  setSyncStatus('syncing', 'fetching from gist…');
-  try {
-    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
-      headers: { 'Authorization': `token ${token}` }
-    });
-    if (!res.ok) { setSyncStatus('error', 'could not fetch gist'); return false; }
-    const data = await res.json();
-    const raw = data.files['forge-history.json']?.content;
-    if (!raw) { setSyncStatus('error', 'gist file not found'); return false; }
-    const parsed = JSON.parse(raw);
-
-    // Merge sessions
-    const localSessions = getSessions();
-    const remoteSessions = parsed.sessions || [];
-    const merged = [...localSessions, ...remoteSessions]
-      .filter((s,i,arr) => arr.findIndex(x=>x.id===s.id)===i)
-      .sort((a,b)=>b.id-a.id)
-      .slice(0, MAX_SESSIONS);
-    saveSessions(merged);
-
-    // Merge drill history
-    const localDrill = getDrillHistory();
-    const remoteDrill = parsed.drillHistory || [];
-    const mergedDrill = [...localDrill, ...remoteDrill]
-      .filter((s,i,arr) => arr.findIndex(x=>x.id===s.id)===i)
-      .sort((a,b)=>b.id-a.id)
-      .slice(0, 50);
-    saveDrillHistory(mergedDrill);
-
-    // Assessment
-    const localAssessment = getAssessment();
-    const remoteAssessment = parsed.assessment;
-    if (remoteAssessment && (!localAssessment || new Date(remoteAssessment.updatedAt) > new Date(localAssessment.updatedAt||0))) {
-      saveAssessment(remoteAssessment);
-    }
-
-    const now = new Date().toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
-    setSyncStatus('synced', `synced at ${now}`);
-    return true;
-  } catch(e) {
-    setSyncStatus('error', 'sync error');
-    return false;
-  }
+async function syncFromGist(){
+  const token=getGithubToken();const gistId=getGistId();if(!token||!gistId)return false;setSyncStatus('syncing','fetching from gist…');
+  try{const res=await fetch(`https://api.github.com/gists/${gistId}`,{headers:{'Authorization':`token ${token}`}});if(!res.ok){setSyncStatus('error','could not fetch gist');return false;}
+    const data=await res.json();const raw=data.files['forge-history.json']?.content;if(!raw){setSyncStatus('error','gist file not found');return false;}
+    const parsed=JSON.parse(raw);
+    const merged=[...getSessions(),...(parsed.sessions||[])].filter((s,i,arr)=>arr.findIndex(x=>x.id===s.id)===i).sort((a,b)=>b.id-a.id).slice(0,MAX_SESSIONS);saveSessions(merged);
+    const mergedDrill=[...getDrillHistory(),...(parsed.drillHistory||[])].filter((s,i,arr)=>arr.findIndex(x=>x.id===s.id)===i).sort((a,b)=>b.id-a.id).slice(0,50);saveDrillHistory(mergedDrill);
+    const la=getAssessment();const ra=parsed.assessment;if(ra&&(!la||new Date(ra.updatedAt)>new Date(la.updatedAt||0)))saveAssessment(ra);
+    const now=new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});setSyncStatus('synced',`synced at ${now}`);return true;}
+  catch(e){setSyncStatus('error','sync error');return false;}
 }
-
-const _origRenderHistory = renderHistory;
-async function renderHistoryWithSync() {
-  if (getGithubToken() && getGistId()) {
-    await syncFromGist();
-  }
-  _origRenderHistory();
-  initGithubTokenUI();
-}
-
-function toggleSession(i) {
-  const detail=document.getElementById(`detail-${i}`);
-  const toggle=document.getElementById(`toggle-${i}`);
-  const open=detail.classList.toggle('open');
-  toggle.textContent=open?'▾':'▸';
-}
+async function renderHistoryWithSync(){if(getGithubToken()&&getGistId()){await syncFromGist();}renderHistory();initGithubTokenUI();}
+function toggleSession(i){const detail=document.getElementById(`detail-${i}`);const toggle=document.getElementById(`toggle-${i}`);const open=detail.classList.toggle('open');toggle.textContent=open?'▾':'▸';}
 </script>
 <script>
-// ---- ABOUT MODAL ----
-document.getElementById('about-btn').addEventListener('click',()=>{
-  document.getElementById('about-modal').classList.add('open');
-});
-document.getElementById('about-close').addEventListener('click',()=>{
-  document.getElementById('about-modal').classList.remove('open');
-});
-document.getElementById('about-modal').addEventListener('click',(e)=>{
-  if(e.target===e.currentTarget) e.currentTarget.classList.remove('open');
-});
+document.getElementById('about-btn').addEventListener('click',()=>{document.getElementById('about-modal').classList.add('open');});
+document.getElementById('about-close').addEventListener('click',()=>{document.getElementById('about-modal').classList.remove('open');});
+document.getElementById('about-modal').addEventListener('click',(e)=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open');});
 document.getElementById('changelog-link').addEventListener('click',(e)=>{
-  e.preventDefault();
-  document.getElementById('about-modal').classList.remove('open');
+  e.preventDefault();document.getElementById('about-modal').classList.remove('open');
   alert('v1.2.0 — Drill module.\n\n· Sentence gym: targeted single-sentence revision reps\n· Adaptive weighting: skews toward your weak categories\n· Combined stats: session + drill history in category bars\n· Drill history synced to GitHub Gist\n\nv1.1.0\n· GitHub Gist sync\n· Model example on partial/miss verdicts\n· Export history to markdown\n\nv1.0.0 — Initial release.');
 });
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  });
-}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 </script>
 </body>
 </html>
