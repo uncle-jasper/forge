@@ -633,17 +633,14 @@ function buildAdaptivePromptBlock(s){
   if(s.mode!=='adaptive')return'';const cs=s.catStats;
   const up=CATEGORIES.filter(c=>cs[c].tier==='upweight'),dn=CATEGORIES.filter(c=>cs[c].tier==='downweight'),ne=CATEGORIES.filter(c=>cs[c].tier==='neutral');
   if(!up.length&&!dn.length)return'';
-  let b='
-
-ADAPTIVE TRAINING NOTE — this writer has an established history. Adjust your analysis priorities accordingly:';
+  let b='\n\nADAPTIVE TRAINING NOTE — this writer has an established history. Adjust your analysis priorities accordingly:';
   if(up.length)b+=`
 - PRIORITIZE finding issues in: ${up.join(', ')}. This writer consistently struggles here. Prefer flagging these when multiple candidates exist.`;
   if(ne.length)b+=`
 - NORMAL weight for: ${ne.join(', ')}.`;
   if(dn.length)b+=`
 - REDUCE emphasis on: ${dn.join(', ')}. Only flag if there is a clear, significant issue.`;
-  b+='
-All categories must still appear at minimum once if the draft offers opportunities.';
+  b+='\nAll categories must still appear at minimum once if the draft offers opportunities.';
   return b;
 }
 
