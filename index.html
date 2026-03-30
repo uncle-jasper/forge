@@ -661,18 +661,41 @@ function updateAdaptiveIndicator(){
   else if(state.sessionsCompleted>0){el.classList.remove('hidden');el.classList.add('baseline');const r=state.sessionsToAdaptive;tEl.textContent=`baseline period — adaptive mode in ${r} session${r!==1?'s':''}`;}
   else{el.classList.add('hidden');}
 }
+function getDrillCatStats(){
+  const t={},p={};CATEGORIES.forEach(c=>{t[c]=0;p[c]=0;});
+  getDrillHistory().forEach(d=>{(d.results||[]).forEach(r=>{if(r.verdict==='skip')return;t[r.category]=(t[r.category]||0)+1;p[r.category]=(p[r.category]||0)+(r.verdict==='pass'?1:0);});});
+  return CATEGORIES.map(c=>({cat:c,total:t[c]||0,pass:p[c]||0,rate:t[c]>0?p[c]/t[c]:null}));
+}
 function renderAdaptiveStatus(){
   const state=getAdaptiveState();const modeEl=document.getElementById('adaptive-status-mode');const bodyEl=document.getElementById('adaptive-status-body');if(!modeEl||!bodyEl)return;
   if(!state.sessionsCompleted){modeEl.textContent='';bodyEl.innerHTML='<div class="assessment-empty">complete sessions to build your training profile.</div>';return;}
+  const drillStats=getDrillCatStats();const drillStatMap={};drillStats.forEach(d=>drillStatMap[d.cat]=d);
   if(state.mode==='baseline'){
     const r=state.sessionsToAdaptive;modeEl.textContent=`baseline · ${r} session${r!==1?'s':''} to adaptive`;const pct=Math.round((state.sessionsCompleted/ADAPTIVE_SESSION_THRESHOLD)*100);
-    bodyEl.innerHTML=`<div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:11px;color:var(--text-dim)">baseline period</span><span style="font-size:11px;color:var(--text-dim)">${state.sessionsCompleted} / ${ADAPTIVE_SESSION_THRESHOLD} sessions</span></div><div style="height:3px;background:var(--border);"><div style="height:100%;width:${pct}%;background:var(--accent);"></div></div></div><div class="adaptive-mode-note">Session adaptive activates after ${ADAPTIVE_SESSION_THRESHOLD} sessions. Drill weighting is active immediately from drill history.</div>`;
+    const rows=CATEGORIES.map(c=>{
+      const ss=state.catStats[c];const ds=drillStatMap[c];
+      const sPct=ss.passRate!==null?Math.round(ss.passRate*100):null;
+      const dPct=ds.rate!==null?Math.round(ds.rate*100):null;
+      const sDisp=sPct!==null?`${sPct}%`:'—';const dDisp=dPct!==null?`${dPct}%`:'—';
+      return`<div class="adaptive-status-row"><span class="adaptive-status-cat">${c}</span><span style="font-size:11px;color:var(--text-dim);min-width:90px;">session: <span style="color:var(--text-mid)">${sDisp}</span></span><span style="font-size:11px;color:var(--text-dim);">drill: <span style="color:var(--text-mid)">${dDisp}</span></span></div>`;
+    }).join('');
+    bodyEl.innerHTML=`<div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:11px;color:var(--text-dim)">baseline period</span><span style="font-size:11px;color:var(--text-dim)">${state.sessionsCompleted} / ${ADAPTIVE_SESSION_THRESHOLD} sessions</span></div><div style="height:3px;background:var(--border);"><div style="height:100%;width:${pct}%;background:var(--accent);"></div></div></div>${rows}<div class="adaptive-mode-note">Session adaptive activates after ${ADAPTIVE_SESSION_THRESHOLD} sessions. Drill weighting is active immediately from drill history.</div>`;
     return;
   }
   modeEl.textContent='adaptive mode active';
-  const rows=CATEGORIES.map(c=>{const stat=state.catStats[c];const pct=stat.passRate!==null?Math.round(stat.passRate*100):0;const bc=stat.tier==='downweight'?'strong':stat.tier==='upweight'?'weak':'mid';const tc=stat.tier==='baseline'?'baseline':stat.tier;const tl=stat.tier==='upweight'?'drilling':stat.tier==='downweight'?'mastered':stat.tier==='neutral'?'balanced':'building';const pd=stat.total>=ADAPTIVE_ATTEMPT_THRESHOLD?`${pct}%`:'—';const bw=stat.total>=ADAPTIVE_ATTEMPT_THRESHOLD?pct:0;return`<div class="adaptive-status-row"><span class="adaptive-status-cat">${c}</span><div class="adaptive-status-bar-wrap"><div class="adaptive-status-bar ${bc}" style="width:${bw}%"></div></div><span class="adaptive-status-pct">${pd}</span><span class="adaptive-status-tag ${tc}">${tl}</span></div>`;}).join('');
+  const rows=CATEGORIES.map(c=>{
+    const stat=state.catStats[c];const ds=drillStatMap[c];
+    const sPct=stat.passRate!==null?Math.round(stat.passRate*100):0;
+    const dPct=ds.rate!==null?Math.round(ds.rate*100):null;
+    const bc=stat.tier==='downweight'?'strong':stat.tier==='upweight'?'weak':'mid';
+    const tc=stat.tier==='baseline'?'baseline':stat.tier;
+    const tl=stat.tier==='upweight'?'drilling':stat.tier==='downweight'?'mastered':stat.tier==='neutral'?'balanced':'building';
+    const sBw=stat.total>=ADAPTIVE_ATTEMPT_THRESHOLD?sPct:0;
+    const dDisp=dPct!==null?`${dPct}%`:'—';
+    return`<div class="adaptive-status-row"><span class="adaptive-status-cat">${c}</span><div class="adaptive-status-bar-wrap"><div class="adaptive-status-bar ${bc}" style="width:${sBw}%"></div></div><span class="adaptive-status-pct" title="session">${stat.total>=ADAPTIVE_ATTEMPT_THRESHOLD?sPct+'%':'—'}</span><span style="font-size:11px;color:var(--text-dim);min-width:52px;text-align:right;" title="drill">${dDisp}</span><span class="adaptive-status-tag ${tc}">${tl}</span></div>`;
+  }).join('');
   const up=CATEGORIES.filter(c=>state.catStats[c].tier==='upweight');
-  bodyEl.innerHTML=rows+`<div class="adaptive-mode-note">${up.length?`Currently drilling: <strong style="color:var(--text)">${up.join(', ')}</strong>. Ease off once pass rate exceeds 75%.`:'All categories balanced or mastered.'}</div>`;
+  bodyEl.innerHTML=rows+`<div class="adaptive-mode-note" style="display:flex;gap:20px;"><span>session pass rate drives adaptive mode</span><span style="opacity:0.6;">drill pass rate drives gym weighting</span></div>`;
 }
 
 // ---- API KEY ----
